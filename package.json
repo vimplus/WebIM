@@ -1,0 +1,42 @@
+{
+  "name": "lemon-imui",
+  "version": "1.7.3",
+  "main": "dist/index.umd.min.js",
+  "description": "基于 VUE2.0 的 IM 聊天组件",
+  "homepage": "http://june000.gitee.io/lemon-im/",
+  "keywords": [
+    "vue",
+    "im",
+    "chat",
+    "vueim",
+    "vuechat",
+    "webim",
+    "webchat"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fanjyy/lemon-imui.git"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --target lib --name index packages/index.js",
+    "build-examples": "vue-cli-service build --dest examples/dist examples/main.js",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "vue": "2.6.14"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.14.4",
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-plugin-eslint": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/compiler-sfc": "^3.1.1",
+    "@webank/eslint-config-webank": "^0.3.0",
+    "less": "3.13.1",
+    "less-loader": "7.3.0",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "author": "fanjun",
+  "license": "MIT"
+}
