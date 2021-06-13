@@ -26,7 +26,7 @@ export default {
             const { tab, index } = vnode.data.attrs;
             pane.push(
                 <div
-                    class="lemon-tabs-content__pane"
+                    class="lemon-tabs-content-pane"
                     v-show={this.active === index}
                 >
                     {vnode}
@@ -35,8 +35,8 @@ export default {
             nav.push(
                 <div
                     class={[
-                        'lemon-tabs-nav__item',
-                        this.active === index && 'lemon-tabs-nav__item--active'
+                        'lemon-tabs-nav-item',
+                        this.active === index && 'lemon-tabs-nav-item-active'
                     ]}
                     onClick={() => this._handleNavClick(index)}
                 >
@@ -63,7 +63,7 @@ export default {
     height: 100%;
     padding: 15px;
 }
-.lemon-tabs-content__pane {
+.lemon-tabs-content-pane {
     height: 100%;
     width: 100%;
 }
@@ -73,14 +73,14 @@ export default {
     display: flex;
     background: #eee;
 }
-.lemon-tabs-nav__item {
+.lemon-tabs-nav-item {
     line-height: 38px;
     padding: 0 15px;
     cursor: pointer;
     -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-.lemon-tabs-nav__item--active {
+.lemon-tabs-nav-item-active {
     background: #f6f6f6;
 }
 </style>

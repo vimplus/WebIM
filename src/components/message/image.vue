@@ -16,12 +16,12 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-message-image .lemon-message__content {
+.lemon-message-image .lemon-message-content {
     padding: 0;
     cursor: pointer;
     overflow: hidden;
 }
-.lemon-message-image .lemon-message__content img {
+.lemon-message-image .lemon-message-content img {
     max-width: 100%;
     min-width: 100px;
     display: block;

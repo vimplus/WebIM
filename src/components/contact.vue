@@ -139,7 +139,7 @@ export default {
 .lemon-contact:hover:not(.lemon-contact-active) {
   background: #e3e3e3;
 }
-.lemon-contact:hover:not(.lemon-contact-active) .el-badge__content {
+.lemon-contact:hover:not(.lemon-contact-active) .el-badge-content {
   border-color: #ddd;
 }
 .lemon-contact-avatar {

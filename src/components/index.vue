@@ -261,9 +261,9 @@ export default {
                     ref="wrapper"
                     class={[
                         'lemon-wrapper',
-                        `lemon-wrapper--theme-${this.theme}`,
-                        { 'lemon-wrapper--simple': this.simple },
-                        this.drawerVisible && 'lemon-wrapper--drawer-show'
+                        `lemon-wrapper-theme-${this.theme}`,
+                        { 'lemon-wrapper-simple': this.simple },
+                        this.drawerVisible && 'lemon-wrapper-drawer-show'
                     ]}
                 >
                     {children}
@@ -274,22 +274,22 @@ export default {
             const menuItem = this._renderMenuItem();
             return (
                 <div class="lemon-menu" v-show={!this.hideMenu}>
-                {
-                    <lemon-avatar
-                        v-show={!this.hideMenuAvatar}
-                        onClick={(e) => {
-                            this.$emit('menu-avatar-click', e);
-                        }}
-                        class="lemon-menu__avatar"
-                        src={this.user.avatar}
-                    />
-                }
-                {menuItem.top}
-                {this.$slots.menu}
-                <div class="lemon-menu__bottom">
-                    {this.$slots['menu-bottom']}
-                    {menuItem.bottom}
-                </div>
+                    {
+                        <lemon-avatar
+                            v-show={!this.hideMenuAvatar}
+                            onClick={(e) => {
+                                this.$emit('menu-avatar-click', e);
+                            }}
+                            class="lemon-menu-avatar"
+                            src={this.user.avatar}
+                        />
+                    }
+                    {menuItem.top}
+                    {this.$slots.menu}
+                    <div class="lemon-menu-bottom">
+                        {this.$slots['menu-bottom']}
+                        {menuItem.bottom}
+                    </div>
                 </div>
             );
         },
@@ -306,8 +306,8 @@ export default {
                 const node = (
                     <div
                         class={[
-                            'lemon-menu__item',
-                            { 'lemon-menu__item--active': this.activeSidebar === name }
+                            'lemon-menu-item',
+                            { 'lemon-menu-item-active': this.activeSidebar === name }
                         ]}
                         onClick={() => {
                             funCall(click, () => {
@@ -387,7 +387,7 @@ export default {
                         contact.index = contact.index.replace(/\[[0-9]*\]/, '');
                         const node = [
                             contact.index !== prevIndex && (
-                                <p class="lemon-sidebar__label">{contact.index}</p>
+                                <p class="lemon-sidebar-label">{contact.index}</p>
                             ),
                             this._renderContact(
                                 {
@@ -419,8 +419,8 @@ export default {
                     v-show={this.activeSidebar === name}
                     on-scroll={this._handleSidebarScroll}
                 >
-                    <div class="lemon-sidebar__fixed-top">{fixedtop}</div>
-                    <div class="lemon-sidebar__scroll">{children}</div>
+                    <div class="lemon-sidebar-fixed-top">{fixedtop}</div>
+                    <div class="lemon-sidebar-scroll">{children}</div>
                 </div>
             );
         },
@@ -447,7 +447,7 @@ export default {
                     defIsShow = !show;
                     nodes.push(
                         <div class={cls} v-show={show}>
-                        {this.CacheContactContainer.get(name)}
+                            {this.CacheContactContainer.get(name)}
                         </div>
                     );
                 }
@@ -470,46 +470,49 @@ export default {
 
             nodes.push(
                 <div class={cls} v-show={this._menuIsMessages() && defIsShow && curact.id}>
-                    <div class="lemon-container__title">
+                    <div class="lemon-container-title">
                         {useScopedSlot(
                             this.$scopedSlots['message-title'],
-                            <div class="lemon-container__displayname">
+                            <div class="lemon-container-displayname">
                                 {curact.displayName}
                             </div>,
                             curact
                         )}
                     </div>
                     <div class="lemon-vessel">
-                        <div class="lemon-vessel__left">
-                        <lemon-messages
-                            ref="messages"
-                            loading-text={this.loadingText}
-                            loadend-text={this.loadendText}
-                            hide-time={this.hideMessageTime}
-                            hide-name={this.hideMessageName}
-                            time-format={this.messageTimeFormat}
-                            reverse-user-id={this.user.id}
-                            on-reach-top={this._emitPullMessages}
-                            messages={this.currentMessages}
-                        />
-                        <lemon-editor
-                            ref="editor"
-                            tools={this.editorTools}
-                            sendText={this.sendText}
-                            sendKey={this.sendKey}
-                            onSend={this._handleSend}
-                            onUpload={this._handleUpload}
-                        />
+                        <div class="lemon-vessel-left">
+                            <lemon-messages
+                                ref="messages"
+                                loading-text={this.loadingText}
+                                loadend-text={this.loadendText}
+                                hide-time={this.hideMessageTime}
+                                hide-name={this.hideMessageName}
+                                time-format={this.messageTimeFormat}
+                                reverse-user-id={this.user.id}
+                                on-reach-top={this._emitPullMessages}
+                                messages={this.currentMessages}
+                            />
+                            <lemon-editor
+                                ref="editor"
+                                tools={this.editorTools}
+                                sendText={this.sendText}
+                                sendKey={this.sendKey}
+                                onSend={this._handleSend}
+                                onUpload={this._handleUpload}
+                                scopedSlots={{
+                                    editorFooter: this.$scopedSlots.editorFooter
+                                }}
+                            />
                         </div>
-                        <div class="lemon-vessel__right">
-                        {useScopedSlot(this.$scopedSlots['message-side'], null, curact)}
+                        <div class="lemon-vessel-right">
+                            {useScopedSlot(this.$scopedSlots['message-side'], null, curact)}
                         </div>
                     </div>
                 </div>
             );
             nodes.push(
                 <div class={cls} v-show={!curact.id && this.currentIsDefSidebar}>
-                {this.$slots.cover}
+                    {this.$slots.cover}
                 </div>
             );
             nodes.push(
@@ -562,10 +565,10 @@ export default {
             allMessages[contactId][type](...data);
         },
         /**
-     * 设置最新消息DOM
-     * @param {String} messageType 消息类型
-     * @param {Function} render 返回消息 vnode
-     */
+         * 设置最新消息DOM
+         * @param {String} messageType 消息类型
+         * @param {Function} render 返回消息 vnode
+         */
         setLastContentRender(messageType, render) {
             lastContentRender[messageType] = render;
         },
@@ -579,10 +582,10 @@ export default {
             return lastContentRender[message.type].call(this, message);
         },
         /**
-     * 将字符串内的 EmojiItem.name 替换为 img
-     * @param {String} str 被替换的字符串
-     * @return {String} 替换后的字符串
-     */
+         * 将字符串内的 EmojiItem.name 替换为 img
+         * @param {String} str 被替换的字符串
+         * @return {String} 替换后的字符串
+         */
         emojiNameToImage(str) {
             // eslint-disable-next-line no-shadow
             return str.replace(/\[!(\w+)\]/gi, (str, match) => {
@@ -601,14 +604,14 @@ export default {
             this.currentMessages = allMessages[this.currentContactId];
         },
         /**
-     * 将当前聊天窗口滚动到底部
-     */
+         * 将当前聊天窗口滚动到底部
+         */
         messageViewToBottom() {
             this.$refs.messages.scrollToBottom();
         },
         /**
-     * 设置联系人的草稿信息
-     */
+         * 设置联系人的草稿信息
+         */
         setDraft(cid, editorValue) {
             if (isEmpty(cid) || isEmpty(editorValue)) return false;
             const contact = this.findContact(cid);
@@ -1078,7 +1081,7 @@ export default {
   -ms-user-select: none;
   user-select: none;
 }
-.lemon-menu__bottom {
+.lemon-menu-bottom {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1089,11 +1092,11 @@ export default {
   position: absolute;
   bottom: 0;
 }
-.lemon-menu__avatar {
+.lemon-menu-avatar {
   margin-bottom: 20px;
   cursor: pointer;
 }
-.lemon-menu__item {
+.lemon-menu-item {
   color: #999;
   cursor: pointer;
   padding: 14px 10px;
@@ -1102,24 +1105,24 @@ export default {
   word-wrap: break-word;
   white-space: pre-wrap;
 }
-.lemon-menu__item--active {
+.lemon-menu-item-active {
   color: #0fd547;
 }
-.lemon-menu__item:hover:not(.lemon-menu__item--active) {
+.lemon-menu-item:hover:not(.lemon-menu-item-active) {
   color: #eee;
 }
-.lemon-menu__item > * {
+.lemon-menu-item > * {
   font-size: 24px;
 }
-.lemon-menu__item .ant-badge-count {
+.lemon-menu-item .ant-badge-count {
   display: inline-block;
   padding: 0 4px;
   height: 18px;
   line-height: 16px;
   min-width: 18px;
 }
-.lemon-menu__item .ant-badge-count,
-.lemon-menu__item .ant-badge-dot {
+.lemon-menu-item .ant-badge-count,
+.lemon-menu-item .ant-badge-dot {
   -webkit-box-shadow: 0 0 0 1px #1d232a;
   box-shadow: 0 0 0 1px #1d232a;
 }
@@ -1134,25 +1137,25 @@ export default {
   -ms-flex-direction: column;
   flex-direction: column;
 }
-.lemon-sidebar__scroll {
+.lemon-sidebar-scroll {
   overflow-y: auto;
 }
-.lemon-sidebar__scroll::-webkit-scrollbar {
+.lemon-sidebar-scroll::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
-.lemon-sidebar__scroll::-webkit-scrollbar-track-piece {
+.lemon-sidebar-scroll::-webkit-scrollbar-track-piece {
   background-color: transparent;
 }
-.lemon-sidebar__scroll::-webkit-scrollbar-thumb:vertical {
+.lemon-sidebar-scroll::-webkit-scrollbar-thumb:vertical {
   height: 5px;
   background-color: #aaa;
 }
-.lemon-sidebar__scroll::-webkit-scrollbar-thumb:horizontal {
+.lemon-sidebar-scroll::-webkit-scrollbar-thumb:horizontal {
   width: 5px;
   background-color: transparent;
 }
-.lemon-sidebar__label {
+.lemon-sidebar-label {
   padding: 6px 14px 6px 14px;
   color: #666;
   font-size: 12px;
@@ -1180,10 +1183,10 @@ export default {
   position: relative;
   z-index: 10;
 }
-.lemon-container__title {
+.lemon-container-title {
   padding: 15px 15px;
 }
-.lemon-container__displayname {
+.lemon-container-displayname {
   font-size: 16px;
 }
 .lemon-vessel {
@@ -1195,7 +1198,7 @@ export default {
   flex: 1;
   min-height: 100px;
 }
-.lemon-vessel__left {
+.lemon-vessel-left {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1207,7 +1210,7 @@ export default {
   -ms-flex: 1;
   flex: 1;
 }
-.lemon-vessel__right {
+.lemon-vessel-right {
   -webkit-box-flex: 0;
   -ms-flex: none;
   flex: none;
@@ -1226,7 +1229,7 @@ export default {
   z-index: 11;
   display: none;
 }
-.lemon-wrapper--drawer-show .lemon-drawer {
+.lemon-wrapper-drawer-show .lemon-drawer {
   display: block;
 }
 .lemon-contact-info {
@@ -1254,57 +1257,57 @@ export default {
   -ms-user-select: none;
   user-select: none;
 }
-.lemon-wrapper--theme-blue .lemon-message__content {
+.lemon-wrapper-theme-blue .lemon-message-content {
   background: #f3f3f3;
 }
-.lemon-wrapper--theme-blue .lemon-message__content::before {
+.lemon-wrapper-theme-blue .lemon-message-content::before {
   border-right-color: #f3f3f3;
 }
-.lemon-wrapper--theme-blue .lemon-message--reverse .lemon-message__content {
+.lemon-wrapper-theme-blue .lemon-message-reverse .lemon-message-content {
   background: #e6eeff;
 }
-.lemon-wrapper--theme-blue
-  .lemon-message--reverse
-  .lemon-message__content::before {
+.lemon-wrapper-theme-blue
+  .lemon-message-reverse
+  .lemon-message-content::before {
   border-left-color: #e6eeff;
 }
-.lemon-wrapper--theme-blue .lemon-container {
+.lemon-wrapper-theme-blue .lemon-container {
   background: #fff;
 }
-.lemon-wrapper--theme-blue .lemon-sidebar {
+.lemon-wrapper-theme-blue .lemon-sidebar {
   background: #f9f9f9;
 }
-.lemon-wrapper--theme-blue .lemon-sidebar .lemon-contact {
+.lemon-wrapper-theme-blue .lemon-sidebar .lemon-contact {
   background: #f9f9f9;
 }
-.lemon-wrapper--theme-blue
+.lemon-wrapper-theme-blue
   .lemon-sidebar
   .lemon-contact:hover:not(.lemon-contact-active) {
   background: #f1f1f1;
 }
-.lemon-wrapper--theme-blue .lemon-sidebar .lemon-contact-active {
+.lemon-wrapper-theme-blue .lemon-sidebar .lemon-contact-active {
   background: #e9e9e9;
 }
-.lemon-wrapper--theme-blue .lemon-menu {
+.lemon-wrapper-theme-blue .lemon-menu {
   background: #096bff;
 }
-.lemon-wrapper--theme-blue .lemon-menu__item {
+.lemon-wrapper-theme-blue .lemon-menu-item {
   color: rgba(255, 255, 255, 0.4);
 }
-.lemon-wrapper--theme-blue
-  .lemon-menu__item:hover:not(.lemon-menu__item--active) {
+.lemon-wrapper-theme-blue
+  .lemon-menu-item:hover:not(.lemon-menu-item-active) {
   color: rgba(255, 255, 255, 0.6);
 }
-.lemon-wrapper--theme-blue .lemon-menu__item--active {
+.lemon-wrapper-theme-blue .lemon-menu-item-active {
   color: #fff;
   text-shadow: 0 0 10px rgba(2, 48, 118, 0.4);
 }
-.lemon-wrapper--simple .lemon-menu,
-.lemon-wrapper--simple .lemon-sidebar {
+.lemon-wrapper-simple .lemon-menu,
+.lemon-wrapper-simple .lemon-sidebar {
   display: none;
 }
-.lemon-wrapper--simple .lemon-menu,
-.lemon-wrapper--simple .lemon-sidebar {
+.lemon-wrapper-simple .lemon-menu,
+.lemon-wrapper-simple .lemon-sidebar {
   display: none;
 }
 .lemon-contextmenu {
@@ -1330,7 +1333,7 @@ export default {
   overflow: hidden;
   min-width: 120px;
 }
-.lemon-contextmenu__item {
+.lemon-contextmenu-item {
   font-size: 14px;
   line-height: 16px;
   padding: 10px 15px;
@@ -1343,7 +1346,7 @@ export default {
   align-items: center;
   color: #333;
 }
-.lemon-contextmenu__item > span {
+.lemon-contextmenu-item > span {
   display: inline-block;
   -webkit-box-flex: 0;
   -ms-flex: none;
@@ -1352,14 +1355,14 @@ export default {
   overflow: hidden;
   white-space: nowrap;
 }
-.lemon-contextmenu__item:hover {
+.lemon-contextmenu-item:hover {
   background: #f3f3f3;
   color: #000;
 }
-.lemon-contextmenu__item:active {
+.lemon-contextmenu-item:active {
   background: #e9e9e9;
 }
-.lemon-contextmenu__icon {
+.lemon-contextmenu-icon {
   font-size: 16px;
   margin-right: 4px;
 }

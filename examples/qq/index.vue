@@ -1,3 +1,23 @@
+<template>
+    <lemon-imui
+        ref="IMUI"
+        class="lemon-slot"
+        theme="blue"
+        :user="UserData"
+        :width="900"
+        avatar-cricle
+        hide-message-name
+        hide-message-time
+        @pull-messages="handlePullMessages"
+        @change-contact="handleChangeContact"
+        @send="handleSend"
+        @changeContact="handleChangeContact"
+    >
+        <template v-slot:editorFooter>
+            按 Enter 发送
+        </template>
+    </lemon-imui>
+</template>
 <script>
 import UserData from '../database/user';
 import ContactsData from '../database/contacts';
@@ -8,7 +28,9 @@ export default {
     name: 'QqImui',
     components: {},
     data() {
-        return {};
+        return {
+            UserData
+        };
     },
     computed: {},
     watch: {},
@@ -25,10 +47,10 @@ export default {
             const params = {
                 position,
                 render: contact => (
-                        <div style="padding:15px">
-                            <h5>{contact.displayName}</h5>
-                            <span on-click={IMUI.closeDrawer}>关闭抽屉</span>
-                        </div>
+                    <div style="padding:15px">
+                        <h5>{contact.displayName}</h5>
+                        <span on-click={IMUI.closeDrawer}>关闭抽屉</span>
+                    </div>
                 )
             };
             if (position === 'center') {
@@ -209,6 +231,7 @@ export default {
                         'change-contact': this.handleChangeContact,
                         send: this.handleSend
                     }}
+                    onChangeContact={this.handleChangeContact}
                     scopedSlots={slots}
                 />
             </div>

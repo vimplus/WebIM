@@ -45,11 +45,11 @@ export default {
                         if (visible) {
                             visibleItems.push(item);
                             const icon = item.icon
-                                ? `<i class="lemon-contextmenu__icon ${item.icon}"></i>`
+                                ? `<i class="lemon-contextmenu-icon ${item.icon}"></i>`
                                 : '';
                             return `<div style="color:${item.color}" title="${
                                 item.text
-                            }" class="lemon-contextmenu__item">${icon}<span>${
+                            }" class="lemon-contextmenu-item">${icon}<span>${
                                 item.text
                             }</span></div>`;
                         }

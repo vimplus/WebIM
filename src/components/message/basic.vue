@@ -44,14 +44,14 @@ export default {
             <div
                 class={[
                     'lemon-message',
-                    `lemon-message--status-${status}`,
+                    `lemon-message-status-${status}`,
                     {
-                        'lemon-message--reverse': this.reverse,
-                        'lemon-message--hide-title': hideTitle
+                        'lemon-message-reverse': this.reverse,
+                        'lemon-message-hide-title': hideTitle
                     }
                 ]}
             >
-                <div class="lemon-message__avatar">
+                <div class="lemon-message-avatar">
                     <lemon-avatar
                         size={36}
                         shape="square"
@@ -61,8 +61,8 @@ export default {
                         }}
                     />
                 </div>
-                <div class="lemon-message__inner">
-                    <div class="lemon-message__title">
+                <div class="lemon-message-inner">
+                    <div class="lemon-message-title">
                         {this.hideName === false && (
                             <span
                                 onClick={(e) => {
@@ -74,7 +74,7 @@ export default {
                         )}
                         {this.hideTime === false && (
                             <span
-                                class="lemon-message__time"
+                                class="lemon-message-time"
                                 onClick={(e) => {
                                     this._emitClick(e, 'sendTime');
                                 }}
@@ -83,10 +83,10 @@ export default {
                             </span>
                         )}
                     </div>
-                    <div class="lemon-message__content-flex">
+                    <div class="lemon-message-content-flex">
                         <div
                             v-lemon-contextmenu_message={this.IMUI.contextmenu}
-                            class="lemon-message__content"
+                            class="lemon-message-content"
                             onClick={(e) => {
                                 this._emitClick(e, 'content');
                             }}
@@ -97,7 +97,7 @@ export default {
                                 this.message
                             )}
                         </div>
-                        <div class="lemon-message__content-after">
+                        <div class="lemon-message-content-after">
                             {useScopedSlot(
                                 this.IMUI.$scopedSlots['message-after'],
                                 null,
@@ -105,7 +105,7 @@ export default {
                             )}
                         </div>
                         <div
-                            class="lemon-message__status"
+                            class="lemon-message-status"
                             onClick={(e) => {
                                 this._emitClick(e, 'status');
                             }}
@@ -134,24 +134,24 @@ export default {
     display: flex;
     padding: 10px 0;
 }
-.lemon-message__time {
+.lemon-message-time {
     color: #b9b9b9;
     padding: 0 5px;
 }
-.lemon-message__inner {
+.lemon-message-inner {
     position: relative;
 }
-.lemon-message__avatar {
+.lemon-message-avatar {
     padding-right: 10px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
-.lemon-message__avatar .lemon-avatar {
+.lemon-message-avatar .lemon-avatar {
     cursor: pointer;
 }
-.lemon-message__title {
+.lemon-message-title {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -165,12 +165,12 @@ export default {
     user-select: none;
     color: #666;
 }
-.lemon-message__content-flex {
+.lemon-message-content-flex {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
 }
-.lemon-message__content {
+.lemon-message-content {
     font-size: 14px;
     line-height: 20px;
     padding: 8px 10px;
@@ -179,12 +179,12 @@ export default {
     position: relative;
     margin: 0;
 }
-.lemon-message__content img,
-.lemon-message__content video {
+.lemon-message-content img,
+.lemon-message-content video {
     background: #e9e9e9;
     height: 100px;
 }
-.lemon-message__content:before {
+.lemon-message-content:before {
     content: " ";
     position: absolute;
     top: 6px;
@@ -195,7 +195,7 @@ export default {
     border-left: none;
     border-right-color: #fff;
 }
-.lemon-message__content-after {
+.lemon-message-content-after {
     display: block;
     width: 48px;
     height: 36px;
@@ -208,57 +208,57 @@ export default {
     overflow: hidden;
     visibility: hidden;
 }
-.lemon-message__status {
+.lemon-message-status {
     position: absolute;
     top: 23px;
     right: 20px;
     color: #aaa;
     font-size: 20px;
 }
-.lemon-message__status .lemon-icon-loading,
-.lemon-message__status .lemon-icon-prompt {
+.lemon-message-status .lemon-icon-loading,
+.lemon-message-status .lemon-icon-prompt {
     display: none;
 }
-.lemon-message--status-going .lemon-icon-loading {
+.lemon-message-status-going .lemon-icon-loading {
     display: inline-block;
 }
-.lemon-message--status-failed .lemon-icon-prompt {
+.lemon-message-status-failed .lemon-icon-prompt {
     display: inline-block;
 }
-.lemon-message--status-succeed .lemon-message__content-after {
+.lemon-message-status-succeed .lemon-message-content-after {
     visibility: visible;
 }
-.lemon-message--reverse {
+.lemon-message-reverse {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
 }
-.lemon-message--reverse .lemon-message__content-flex {
+.lemon-message-reverse .lemon-message-content-flex {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
 }
-.lemon-message--reverse .lemon-message__content-after {
+.lemon-message-reverse .lemon-message-content-after {
     padding-right: 6px;
     padding-left: 0;
     text-align: right;
 }
-.lemon-message--reverse .lemon-message__title {
+.lemon-message-reverse .lemon-message-title {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
 }
-.lemon-message--reverse .lemon-message__status {
+.lemon-message-reverse .lemon-message-status {
     left: 26px;
     right: auto;
 }
-.lemon-message--reverse .lemon-message__content {
+.lemon-message-reverse .lemon-message-content {
     background: #35d863;
 }
-.lemon-message--reverse .lemon-message__content:before {
+.lemon-message-reverse .lemon-message-content:before {
     content: " ";
     position: absolute;
     top: 6px;
@@ -270,24 +270,24 @@ export default {
     border-right: none;
     border-left-color: #35d863;
 }
-.lemon-message--reverse .lemon-message__title {
+.lemon-message-reverse .lemon-message-title {
     text-align: right;
 }
-.lemon-message--reverse .lemon-message__avatar {
+.lemon-message-reverse .lemon-message-avatar {
     padding-right: 0;
     padding-left: 10px;
 }
-.lemon-message--hide-title .lemon-message__avatar {
+.lemon-message-hide-title .lemon-message-avatar {
     padding-top: 10px;
 }
-.lemon-message--hide-title .lemon-message__status {
+.lemon-message-hide-title .lemon-message-status {
     top: 14px;
 }
-.lemon-message--hide-title .lemon-message__content {
+.lemon-message-hide-title .lemon-message-content {
     position: relative;
     top: -10px;
 }
-.lemon-message--hide-title .lemon-message__content:before {
+.lemon-message-hide-title .lemon-message-content:before {
     top: 14px;
 }
 </style>

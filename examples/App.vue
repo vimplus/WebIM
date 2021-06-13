@@ -1028,12 +1028,12 @@ const tip = `export default {
     -ms-user-select: none;
     user-select: none;
 }
-.lemon-message.lemon-message-voice .lemon-message__content {
+.lemon-message.lemon-message-voice .lemon-message-content {
     border: 2px solid #000;
     font-size: 12px;
     cursor: pointer;
 }
-.lemon-message.lemon-message-voice .lemon-message__content::before {
+.lemon-message.lemon-message-voice .lemon-message-content::before {
     display: none;
 }
 </style>`;

@@ -96,14 +96,14 @@ export default {
             <div class="lemon-messages" ref="wrap" on-scroll={this._handleScroll}>
                 <div
                     class={[
-                        'lemon-messages__load',
-                        `lemon-messages__load--${this.loadend ? 'end' : 'ing'}`
+                        'lemon-messages-load',
+                        `lemon-messages-load-${this.loadend ? 'end' : 'ing'}`
                     ]}
                 >
-                <span class="lemon-messages__loadend">
+                <span class="lemon-messages-loadend">
                     {isString(this.loadendText) ? this.loadendText : this.loadendText()}
                 </span>
-                <span class="lemon-messages__loading">
+                <span class="lemon-messages-loading">
                     {this.loadingText ? (
                         isString(this.loadingText) ? (
                             this.loadingText
@@ -181,11 +181,11 @@ export default {
   width: 5px;
   background-color: transparent;
 }
-.lemon-messages__time {
+.lemon-messages-time {
   text-align: center;
   font-size: 12px;
 }
-.lemon-messages__load {
+.lemon-messages-load {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -195,17 +195,17 @@ export default {
   color: #999;
   line-height: 30px;
 }
-.lemon-messages__load .lemon-messages__loading,
-.lemon-messages__load .lemon-messages__loadend {
+.lemon-messages-load .lemon-messages-loading,
+.lemon-messages-load .lemon-messages-loadend {
   display: none;
 }
-.lemon-messages__load--ing .lemon-icon-loading {
+.lemon-messages-load-ing .lemon-icon-loading {
   font-size: 22px;
 }
-.lemon-messages__load--ing .lemon-messages__loading {
+.lemon-messages-load-ing .lemon-messages-loading {
   display: block;
 }
-.lemon-messages__load--end .lemon-messages__loadend {
+.lemon-messages-load-end .lemon-messages-loadend {
   display: block;
 }
 </style>

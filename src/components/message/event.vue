@@ -19,7 +19,7 @@ export default {
         return (
             <div class="lemon-message lemon-message-event">
                 <span
-                    class="lemon-message-event__content"
+                    class="lemon-message-event-content"
                     onClick={e => this._emitClick(e, 'content')}
                 >
                     {content}
@@ -30,7 +30,7 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-message-event__content {
+.lemon-message-event-content {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;

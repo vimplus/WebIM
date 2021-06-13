@@ -5590,9 +5590,9 @@ var triggerEvents = {
         }
       }
     }, [h("div", {
-      "class": "lemon-popover__content"
+      "class": "lemon-popover-content"
     }, [this.$slots.content]), h("div", {
-      "class": "lemon-popover__arrow"
+      "class": "lemon-popover-arrow"
     })])]), this.$slots.default]);
   },
   destroyed: function destroyed() {
@@ -5887,14 +5887,14 @@ document.addEventListener("click", function (e) {
           tab = _vnode$data$attrs.tab,
           index = _vnode$data$attrs.index;
       pane.push(h("div", {
-        "class": "lemon-tabs-content__pane",
+        "class": "lemon-tabs-content-pane",
         "directives": [{
           name: "show",
           value: _this.active == index
         }]
       }, [vnode]));
       nav.push(h("div", {
-        "class": ["lemon-tabs-nav__item", _this.active == index && "lemon-tabs-nav__item--active"],
+        "class": ["lemon-tabs-nav-item", _this.active == index && "lemon-tabs-nav-item-active"],
         "on": {
           "click": function click() {
             return _this._handleNavClick(index);
@@ -6548,14 +6548,14 @@ var isInitTool = false;
           click = _ref.click,
           isRight = _ref.isRight;
       click = click || new Function();
-      var classes = ["lemon-editor__tool-item", {
-        "lemon-editor__tool-item--right": isRight
+      var classes = ["lemon-editor-tool-item", {
+        "lemon-editor-tool-item-right": isRight
       }];
       var node;
 
       if (name == "emoji") {
         node = emojiData.length == 0 ? "" : h("lemon-popover", {
-          "class": "lemon-editor__emoji"
+          "class": "lemon-editor-emoji"
         }, [h("template", {
           "slot": "content"
         }, [_this2._renderEmojiTabs()]), h("div", {
@@ -6585,7 +6585,7 @@ var isInitTool = false;
     return h("div", {
       "class": "lemon-editor"
     }, [this.clipboardUrl && h("div", {
-      "class": "lemon-editor__clipboard-image"
+      "class": "lemon-editor-clipboard-image"
     }, [h("img", {
       "attrs": {
         "src": this.clipboardUrl
@@ -6616,15 +6616,15 @@ var isInitTool = false;
         "change": this._handleChangeFile
       }
     }), h("div", {
-      "class": "lemon-editor__tool"
+      "class": "lemon-editor-tool"
     }, [h("div", {
-      "class": "lemon-editor__tool-left"
+      "class": "lemon-editor-tool-left"
     }, [toolLeft]), h("div", {
-      "class": "lemon-editor__tool-right"
+      "class": "lemon-editor-tool-right"
     }, [toolRight])]), h("div", {
-      "class": "lemon-editor__inner"
+      "class": "lemon-editor-inner"
     }, [h("div", {
-      "class": "lemon-editor__input",
+      "class": "lemon-editor-input",
       "ref": "textarea",
       "attrs": {
         "contenteditable": "true",
@@ -6637,11 +6637,11 @@ var isInitTool = false;
         "click": this._handleClick
       }
     })]), h("div", {
-      "class": "lemon-editor__footer"
+      "class": "lemon-editor-footer"
     }, [h("div", {
-      "class": "lemon-editor__tip"
+      "class": "lemon-editor-tip"
     }, [useScopedSlot(this.IMUI.$scopedSlots["editor-footer"], "使用 ctrl + enter 快捷发送消息")]), h("div", {
-      "class": "lemon-editor__submit"
+      "class": "lemon-editor-submit"
     }, [h("lemon-button", {
       "attrs": {
         "disabled": this.submitDisabled
@@ -6750,7 +6750,7 @@ var isInitTool = false;
               "src": item.src,
               "title": item.title
             },
-            "class": "lemon-editor__emoji-item",
+            "class": "lemon-editor-emoji-item",
             "on": {
               "click": function click() {
                 return _this4._handleSelectEmoji(item);
@@ -6991,11 +6991,11 @@ var editor_component = normalizeComponent(
         "scroll": this._handleScroll
       }
     }, [h("div", {
-      "class": ["lemon-messages__load", "lemon-messages__load--".concat(this._loadend ? "end" : "ing")]
+      "class": ["lemon-messages-load", "lemon-messages-load-".concat(this._loadend ? "end" : "ing")]
     }, [h("span", {
-      "class": "lemon-messages__loadend"
+      "class": "lemon-messages-loadend"
     }, [isString(this.loadendText) ? this.loadendText : this.loadendText()]), h("span", {
-      "class": "lemon-messages__loading"
+      "class": "lemon-messages-loading"
     }, [this.loadingText ? isString(this.loadingText) ? this.loadingText : this.loadingText() : h("i", {
       "class": "lemon-icon-loading lemonani-spin"
     })])]), this.messages.map(function (message, index) {
@@ -7245,12 +7245,12 @@ var messages_component = normalizeComponent(
         sendTime = _this$message.sendTime;
     var hideTitle = this.hideName == true && this.hideTime == true;
     return h("div", {
-      "class": ["lemon-message", "lemon-message--status-".concat(status), {
-        "lemon-message--reverse": this.reverse,
-        "lemon-message--hide-title": hideTitle
+      "class": ["lemon-message", "lemon-message-status-".concat(status), {
+        "lemon-message-reverse": this.reverse,
+        "lemon-message-hide-title": hideTitle
       }]
     }, [h("div", {
-      "class": "lemon-message__avatar"
+      "class": "lemon-message-avatar"
     }, [h("lemon-avatar", {
       "attrs": {
         "size": 36,
@@ -7263,9 +7263,9 @@ var messages_component = normalizeComponent(
         }
       }
     })]), h("div", {
-      "class": "lemon-message__inner"
+      "class": "lemon-message-inner"
     }, [h("div", {
-      "class": "lemon-message__title"
+      "class": "lemon-message-title"
     }, [this.hideName == false && h("span", {
       "on": {
         "click": function click(e) {
@@ -7273,14 +7273,14 @@ var messages_component = normalizeComponent(
         }
       }
     }, [fromUser.displayName]), this.hideTime == false && h("span", {
-      "class": "lemon-message__time",
+      "class": "lemon-message-time",
       "on": {
         "click": function click(e) {
           _this._emitClick(e, "sendTime");
         }
       }
     }, [this.timeFormat(sendTime)])]), h("div", {
-      "class": "lemon-message__content-flex"
+      "class": "lemon-message-content-flex"
     }, [h("div", {
       "directives": [{
         name: "lemon-contextmenu",
@@ -7289,16 +7289,16 @@ var messages_component = normalizeComponent(
           "message": true
         }
       }],
-      "class": "lemon-message__content",
+      "class": "lemon-message-content",
       "on": {
         "click": function click(e) {
           _this._emitClick(e, "content");
         }
       }
     }, [useScopedSlot(this.$scopedSlots["content"], null, this.message)]), h("div", {
-      "class": "lemon-message__content-after"
+      "class": "lemon-message-content-after"
     }, [useScopedSlot(this.IMUI.$scopedSlots["message-after"], null, this.message)]), h("div", {
-      "class": "lemon-message__status",
+      "class": "lemon-message-status",
       "on": {
         "click": function click(e) {
           _this._emitClick(e, "status");
@@ -7505,13 +7505,13 @@ function filevue_type_script_lang_js_objectSpread(target) { for (var i = 1; i < 
       "scopedSlots": {
         content: function content(props) {
           return [h("div", {
-            "class": "lemon-message-file__inner"
+            "class": "lemon-message-file-inner"
           }, [h("p", {
-            "class": "lemon-message-file__name"
+            "class": "lemon-message-file-name"
           }, [props.fileName]), h("p", {
-            "class": "lemon-message-file__byte"
+            "class": "lemon-message-file-byte"
           }, [formatByte(props.fileSize)])]), h("div", {
-            "class": "lemon-message-file__sfx"
+            "class": "lemon-message-file-sfx"
           }, [h("i", {
             "class": "lemon-icon-attah"
           })])];
@@ -7559,7 +7559,7 @@ var file_component = normalizeComponent(
     return h("div", {
       "class": "lemon-message lemon-message-event"
     }, [h("span", {
-      "class": "lemon-message-event__content",
+      "class": "lemon-message-event-content",
       "on": {
         "click": function click(e) {
           return _this._emitClick(e, "content");

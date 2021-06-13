@@ -41,7 +41,7 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-message-text .lemon-message__content img {
+.lemon-message-text .lemon-message-content img {
     width: 18px;
     height: 18px;
     display: inline-block;

@@ -99,8 +99,8 @@ export default {
                             style={this.popoverStyle}
                             onClick={e => e.stopPropagation()}
                         >
-                            <div class="lemon-popover__content">{this.$slots.content}</div>
-                            <div class="lemon-popover__arrow" />
+                            <div class="lemon-popover-content">{this.$slots.content}</div>
+                            <div class="lemon-popover-arrow" />
                         </div>
                     )}
                 </transition>
@@ -127,14 +127,14 @@ export default {
   -webkit-transform-origin: 50% 150%;
   transform-origin: 50% 150%;
 }
-.lemon-popover__content {
+.lemon-popover-content {
   padding: 15px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   position: relative;
   z-index: 1;
 }
-.lemon-popover__arrow {
+.lemon-popover-arrow {
   left: 50%;
   -webkit-transform: translateX(-50%) rotate(45deg);
   transform: translateX(-50%) rotate(45deg);
