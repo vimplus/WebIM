@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: 'LemonTabs',
+    name: 'WitalkTabs',
     props: {
         activeIndex: String
     },
@@ -26,7 +26,7 @@ export default {
             const { tab, index } = vnode.data.attrs;
             pane.push(
                 <div
-                    class="lemon-tabs-content-pane"
+                    class="witalk-tabs-content-pane"
                     v-show={this.active === index}
                 >
                     {vnode}
@@ -35,8 +35,8 @@ export default {
             nav.push(
                 <div
                     class={[
-                        'lemon-tabs-nav-item',
-                        this.active === index && 'lemon-tabs-nav-item-active'
+                        'witalk-tabs-nav-item',
+                        this.active === index && 'witalk-tabs-nav-item-active'
                     ]}
                     onClick={() => this._handleNavClick(index)}
                 >
@@ -46,41 +46,41 @@ export default {
             return true;
         });
         return (
-            <div class="lemon-tabs">
-                <div class="lemon-tabs-content">{pane}</div>
-                <div class="lemon-tabs-nav">{nav}</div>
+            <div class="witalk-tabs">
+                <div class="witalk-tabs-content">{pane}</div>
+                <div class="witalk-tabs-nav">{nav}</div>
             </div>
         );
     }
 };
 </script>
 <style lang="less">
-.lemon-tabs {
+.witalk-tabs {
     background: #f6f6f6;
 }
-.lemon-tabs-content {
+.witalk-tabs-content {
     width: 100%;
     height: 100%;
     padding: 15px;
 }
-.lemon-tabs-content-pane {
+.witalk-tabs-content-pane {
     height: 100%;
     width: 100%;
 }
-.lemon-tabs-nav {
+.witalk-tabs-nav {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     background: #eee;
 }
-.lemon-tabs-nav-item {
+.witalk-tabs-nav-item {
     line-height: 38px;
     padding: 0 15px;
     cursor: pointer;
     -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-.lemon-tabs-nav-item-active {
+.witalk-tabs-nav-item-active {
     background: #f6f6f6;
 }
 </style>

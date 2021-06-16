@@ -109,7 +109,7 @@ export default [
     },
     {
         id: 13,
-        displayName: 'Lemon-imui交流群',
+        displayName: 'Witalk-imui交流群',
         avatar: 'https://p.qqan.com/up/2020-11/20201127157109035.jpg',
         index: 'L',
         isGroup: true,

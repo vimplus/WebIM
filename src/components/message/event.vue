@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: 'lemonMessageEvent',
+    name: 'WitalkMessageEvent',
     inject: ['IMUI'],
     inheritAttrs: false,
     methods: {
@@ -17,9 +17,9 @@ export default {
     render() {
         const { content } = this.$attrs.message;
         return (
-            <div class="lemon-message lemon-message-event">
+            <div class="witalk-message witalk-message-event">
                 <span
-                    class="lemon-message-event-content"
+                    class="witalk-message-event-content"
                     onClick={e => this._emitClick(e, 'content')}
                 >
                     {content}
@@ -30,7 +30,7 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-message-event-content {
+.witalk-message-event-content {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;

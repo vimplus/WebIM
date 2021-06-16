@@ -1,7 +1,7 @@
 <template>
-    <lemon-imui
+    <witalk-imui
         ref="IMUI"
-        class="lemon-slot"
+        class="witalk-slot"
         theme="blue"
         :user="UserData"
         :width="900"
@@ -13,10 +13,121 @@
         @send="handleSend"
         @changeContact="handleChangeContact"
     >
-        <template v-slot:editorFooter>
+        <template v-slot:sidebar-contact-fixedtop>
+            <div class="slot-contact-fixedtop">
+                <input
+                    class="slot-search"
+                    placeholder="搜索通讯录"
+                />
+            </div>
+        </template>
+        <template v-slot:editor-footer>
             按 Enter 发送
         </template>
-    </lemon-imui>
+        <template #message-title="contact">
+            <div>
+                <div style="display:flex;justify-content:space-between">
+                    <span>{{contact.displayName}}</span>
+                    <span style="font-size:12px;">
+                        <span>打开抽屉：</span>
+                        <span
+                            class="cursor:pointer;"
+                            @click="() => openDrawer('right')"
+                        >
+                            右侧 |
+                        </span>
+                        <span
+                            class="cursor:pointer;"
+                            @click="openDrawer('rightInside')"
+                        >
+                            右侧内部 |
+                        </span>
+                        <span
+                            class="cursor:pointer;"
+                            @click="() => openDrawer('center')"
+                        >
+                            居中
+                        </span>
+                    </span>
+                </div>
+                <div v-if="contact.isGroup" class="slot-group-menu">
+                    <span>聊天</span>
+                    <span>公告</span>
+                    <span>相册</span>
+                    <span>文件</span>
+                    <span>活动</span>
+                    <span
+                        v-witalk-contextmenu.click="[
+                            {
+                                text: '操作一',
+                                click(
+                                    e,
+                                    instance,
+                                    hide
+                                ) {
+                                    hide();
+                                }
+                            },
+                            {
+                                text: '操作二'
+                            }
+                        ]"
+                    >
+                        设置(左键弹出菜单)
+                    </span>
+                </div>
+            </div>
+        </template>
+        <template v-slot:message-side>
+            <div class="slot-group">
+                <div class="slot-group-title">
+                    群通知
+                </div>
+                <div class="slot-group-notice">
+                    进群请改备注，格式，工作地点-姓名，请大家配合谢谢
+                </div>
+                <div class="slot-group-title">
+                    群成员
+                </div>
+                <div class="slot-group-panel">
+                    <input
+                        class="slot-search"
+                        placeholder="搜索群成员"
+                    />
+                    <div class="slot-group-member">
+                        河南-96-十里青山
+                    </div>
+                    <div class="slot-group-member">
+                        河南-96-十里青山
+                    </div>
+                    <div class="slot-group-member">
+                        河南-96-十里青山
+                    </div>
+                    <div class="slot-group-member">
+                        河南-96-十里青山
+                    </div>
+                    <div class="slot-group-member">
+                        河南-96-十里青山
+                    </div>
+                    <div class="slot-group-member">
+                        河南-96-十里青山
+                    </div>
+                    <div class="slot-group-member">
+                        河南-96-十里青山
+                    </div>
+                    <div class="slot-group-member">
+                        河南-96-十里青山
+                    </div>
+                    <div class="slot-group-member">
+                        河南-96-十里青山
+                    </div>
+                    <div class="slot-group-member">
+                        河南-96-十里青山
+                    </div>
+                </div>
+            </div>
+        </template>
+    </witalk-imui>
 </template>
 <script>
 import UserData from '../database/user';
@@ -117,7 +228,7 @@ export default {
                                 <span>文件</span>
                                 <span>活动</span>
                                 <span
-                                    v-lemon-contextmenu_click={[
+                                    v-witalk-contextmenu_click={[
                                         {
                                             text: '操作一',
                                             click(
@@ -217,9 +328,9 @@ export default {
         };
 
         return (
-            <div class="qq-lemon-imui">
-                <lemon-imui
-                    class="lemon-slot"
+            <div class="qq-witalk-imui">
+                <witalk-imui
+                    class="witalk-slot"
                     user={UserData}
                     width={900}
                     avatar-cricle

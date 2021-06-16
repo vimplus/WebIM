@@ -1,0 +1,57 @@
+<template>
+    <div class="witalk-editor">
+        <div v-if="clipboardUrl" class="witalk-editor-clipboard-image">
+            <img :src="clipboardUrl" />
+            <div>
+                <witalk-button
+                    color="grey"
+                    :style="{ marginRight: '10px' }"
+                    @click="closeClipboardImage"
+                >
+                    取消
+                </witalk-button>
+                <witalk-button @click="sendClipboardImage">
+                    发送图片
+                </witalk-button>
+            </div>
+        </div>
+        <input
+            ref="fileInput"
+            style="display:none"
+            type="file"
+            multiple="multiple"
+            :accept="accept"
+            @change="_handleChangeFile"
+        />
+        <div class="witalk-editor-tool">
+            <!-- <div class="witalk-editor-tool-left">{toolLeft}</div>
+            <div class="witalk-editor-tool-right">{toolRight}</div> -->
+        </div>
+        <div class="witalk-editor-inner">
+            <div
+                ref="textarea"
+                class="witalk-editor-input"
+                contenteditable="true"
+                spellcheck="false"
+                @keyup="_handleKeyup"
+                @keydown="_handleKeydown"
+                @paste="_handlePaste"
+                @click="_handleClick"
+            />
+        </div>
+        <div class="witalk-editor-footer">
+            <div class="witalk-editor-tip">
+                <slot name="editorFooter">使用 ctrl + enter 快捷发送消息</slot>
+                <slot name="editor-footer">使用 ctrl + enter 快捷发送消息</slot>
+            </div>
+            <div class="witalk-editor-submit">
+                <witalk-button
+                    :disabled="submitDisabled"
+                    @click="_handleSend"
+                >
+                    {{sendText}}
+                </witalk-button>
+            </div>
+        </div>
+    </div>
+</template>

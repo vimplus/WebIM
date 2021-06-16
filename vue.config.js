@@ -6,7 +6,7 @@ function resolve(dir) {
 module.exports = {
     pages: {
         index: {
-            entry: 'examples/main.js',
+            entry: 'demo/main.js',
             template: 'public/index.html',
             filename: 'index.html'
         }

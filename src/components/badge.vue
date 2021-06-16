@@ -1,12 +1,12 @@
 <template>
-    <span class="lemon-badge">
+    <span class="witalk-badge">
         <slot></slot>
-        <span v-if="count" :class="['lemon-badge-label', isDot && 'lemon-badge-label-dot']">{{label}}</span>
+        <span v-if="count" :class="['witalk-badge-label', isDot && 'witalk-badge-label-dot']">{{label}}</span>
     </span>
 </template>
 <script>
 export default {
-    name: 'LemonBadge',
+    name: 'WitalkBadge',
     props: {
         count: [Number, Boolean],
         overflowCount: {
@@ -28,10 +28,10 @@ export default {
     methods: {}
     // render() {
     //     return (
-    //         <span class="lemon-badge">
+    //         <span class="witalk-badge">
     //             {this.$slots.default}
     //             {this.count !== 0 && this.count && (
-    //                 <span class={['lemon-badge-label', this.isDot && 'lemon-badge-label-dot']}>{this.label}</span>
+    //                 <span class={['witalk-badge-label', this.isDot && 'witalk-badge-label-dot']}>{this.label}</span>
     //             )}
     //         </span>
     //     );
@@ -39,11 +39,11 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-badge {
+.witalk-badge {
   position: relative;
   display: inline-block;
 }
-.lemon-badge-label {
+.witalk-badge-label {
   border-radius: 10px;
   background: #f5222d;
   color: #fff;
@@ -67,7 +67,7 @@ export default {
   top: -4px;
   right: 6px;
 }
-.lemon-badge-label-dot {
+.witalk-badge-label-dot {
   width: 10px;
   height: 10px;
   min-width: auto;

@@ -1,24 +1,24 @@
 <template>
     <div
-        :class="['lemon-contact', { 'lemon-contact-name-center': simple }]"
+        :class="['witalk-contact', { 'witalk-contact-name-center': simple }]"
         :title="contact.displayName"
         @click="e => _handleClick(e, contact)"
     >
         <slot>
-            <lemon-badge
+            <witalk-badge
                 :count="!simple ? contact.unread : 0"
-                class="lemon-contact-avatar"
+                class="witalk-contact-avatar"
             >
-                <lemon-avatar :size="40" :src="contact.avatar" />
-            </lemon-badge>
-            <div class="lemon-contact-inner">
-                <p class="lemon-contact-label">
-                    <span class="lemon-contact-name">{{contact.displayName}}</span>
-                    <span v-if="!simple" class="lemon-contact-time">
+                <witalk-avatar :size="40" :src="contact.avatar" />
+            </witalk-badge>
+            <div class="witalk-contact-inner">
+                <p class="witalk-contact-label">
+                    <span class="witalk-contact-name">{{contact.displayName}}</span>
+                    <span v-if="!simple" class="witalk-contact-time">
                         {{timeFormat(contact.lastSendTime)}}
                     </span>
                 </p>
-                <p v-if="!simple" class="lemon-contact-content">
+                <p v-if="!simple" class="witalk-contact-content">
                     <span v-if="isString(contact.lastContent)" v-html="contact.lastContent"></span>
                     <span v-else>{{contact.lastContent}}</span>
                 </p>
@@ -35,7 +35,7 @@ import { timeFormat, useScopedSlot } from '@/utils';
 // }
 
 export default {
-    name: 'LemonContact',
+    name: 'WitalkContact',
     components: {},
     inject: {
         IMUI: {
@@ -68,23 +68,23 @@ export default {
         _renderInner() {
             const { contact } = this;
             return [
-                <lemon-badge
+                <witalk-badge
                     count={!this.simple ? contact.unread : 0}
-                    class="lemon-contact-avatar"
+                    class="witalk-contact-avatar"
                 >
-                    <lemon-avatar size={40} src={contact.avatar} />
-                </lemon-badge>,
-                <div class="lemon-contact-inner">
-                    <p class="lemon-contact-label">
-                        <span class="lemon-contact-name">{contact.displayName}</span>
+                    <witalk-avatar size={40} src={contact.avatar} />
+                </witalk-badge>,
+                <div class="witalk-contact-inner">
+                    <p class="witalk-contact-label">
+                        <span class="witalk-contact-name">{contact.displayName}</span>
                         {!this.simple && (
-                            <span class="lemon-contact-time">
+                            <span class="witalk-contact-time">
                               {this.timeFormat(contact.lastSendTime)}
                             </span>
                         )}
                     </p>
                     {!this.simple && (
-                        <p class="lemon-contact-content">
+                        <p class="witalk-contact-content">
                             {isString(contact.lastContent) ? (
                                 <span domProps={{ innerHTML: contact.lastContent }} />
                             ) : (
@@ -102,7 +102,7 @@ export default {
     render() {
         return (
             <div
-                class={['lemon-contact', { 'lemon-contact-name-center': this.simple }]}
+                class={['witalk-contact', { 'witalk-contact-name-center': this.simple }]}
                 title={this.contact.displayName}
                 on-click={e => this._handleClick(e, this.contact)}
             >
@@ -117,7 +117,7 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-contact {
+.witalk-contact {
   padding: 10px 14px;
   cursor: pointer;
   -webkit-user-select: none;
@@ -130,26 +130,26 @@ export default {
   background: #efefef;
   text-align: left;
 }
-.lemon-contact p {
+.witalk-contact p {
   margin: 0;
 }
-.lemon-contact-active {
+.witalk-contact-active {
   background: #bebdbd;
 }
-.lemon-contact:hover:not(.lemon-contact-active) {
+.witalk-contact:hover:not(.witalk-contact-active) {
   background: #e3e3e3;
 }
-.lemon-contact:hover:not(.lemon-contact-active) .el-badge-content {
+.witalk-contact:hover:not(.witalk-contact-active) .el-badge-content {
   border-color: #ddd;
 }
-.lemon-contact-avatar {
+.witalk-contact-avatar {
   float: left;
   margin-right: 10px;
 }
-.lemon-contact-avatar img {
+.witalk-contact-avatar img {
   display: block;
 }
-.lemon-contact-avatar .ant-badge-count {
+.witalk-contact-avatar .ant-badge-count {
   display: inline-block;
   padding: 0 4px;
   height: 18px;
@@ -158,26 +158,26 @@ export default {
   top: -4px;
   right: 7px;
 }
-.lemon-contact-label {
+.witalk-contact-label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.lemon-contact-time {
+.witalk-contact-time {
   font-size: 12px;
   line-height: 18px;
   padding-left: 6px;
   color: #999;
   white-space: nowrap;
 }
-.lemon-contact-name {
+.witalk-contact-name {
   display: block;
   width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
-.lemon-contact-content {
+.witalk-contact-content {
   font-size: 12px;
   color: #999;
   height: 18px;
@@ -187,7 +187,7 @@ export default {
   overflow: hidden;
   white-space: nowrap;
 }
-.lemon-contact-content img {
+.witalk-contact-content img {
   height: 14px;
   display: inline-block;
   vertical-align: middle;
@@ -195,7 +195,7 @@ export default {
   position: relative;
   top: -1px;
 }
-.lemon-contact-name-center .lemon-contact-label {
+.witalk-contact-name-center .witalk-contact-label {
   padding-bottom: 0;
   line-height: 38px;
 }

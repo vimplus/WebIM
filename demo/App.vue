@@ -3,13 +3,13 @@
         <div class="scroll-top" @click="scrollToTop">🚀</div>
         <div class="logo">
             <div class="logo-text">
-                <b>Lemon</b> IMUI<span class="logo-badge">{{packageData.version}}</span>
+                <b>Witalk</b> IMUI<span class="logo-badge">{{packageData.version}}</span>
             </div>
             <div class="logo-sub">{{packageData.description}}</div>
             <div class="link">
                 <span>源码下载&nbsp;&nbsp;</span>
-                <a target="_blank" href="https://github.com/fanjyy/lemon-imui">Github</a>
-                <a target="_blank" href="https://gitee.com/june000/lemon-im">Gitee</a>
+                <a target="_blank" href="https://github.com/fanjyy/witalk-imui">Github</a>
+                <a target="_blank" href="https://gitee.com/june000/witalk-im">Gitee</a>
                 <a
                     target="_blank"
                     href="https://qm.qq.com/cgi-bin/qm/qr?k=xzUa9CPYQ5KCNQ86h7ep4Z3TtkqJxRZE&jump_from=webapi"
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="imui-center">
-            <lemon-imui
+            <witalk-imui
                 ref="IMUI"
                 :user="user"
                 :contextmenu="contextmenu"
@@ -43,8 +43,8 @@
             >
                 <template #cover>
                     <div class="cover">
-                        <i class="lemon-icon-message"></i>
-                        <p><b>自定义封面 Lemon</b> IMUI</p>
+                        <i class="witalk-icon-message"></i>
+                        <p><b>自定义封面 Witalk</b> IMUI</p>
                     </div>
                 </template>
                 <template #message-title="contact">
@@ -52,33 +52,33 @@
                     <small class="more" @click="changeDrawer(contact, $refs.IMUI)">{{($refs.IMUI ? $refs.IMUI.drawerVisible : false) ? "关闭" : "打开"}}抽屉</small>
                     <br />
                 </template>
-            </lemon-imui>
+            </witalk-imui>
             <a
                 target="_blank"
                 style="font-size:14px"
                 href="https://codesandbox.io/s/sweet-chaplygin-s24mb?fontsize=14&hidenavigation=1&theme=dark"
             >在线编辑代码</a>
             <div class="action">
-                <lemon-button @click="appendMessage">发送消息</lemon-button>
-                <lemon-button @click="appendEventMessage">发送 event 消息</lemon-button>
-                <lemon-button @click="removeMessage">删除最近一条消息</lemon-button>
-                <lemon-button @click="updateMessage">修改消息</lemon-button>
-                <lemon-button @click="appendCustomMessage">发送消息</lemon-button>
+                <witalk-button @click="appendMessage">发送消息</witalk-button>
+                <witalk-button @click="appendEventMessage">发送 event 消息</witalk-button>
+                <witalk-button @click="removeMessage">删除最近一条消息</witalk-button>
+                <witalk-button @click="updateMessage">修改消息</witalk-button>
+                <witalk-button @click="appendCustomMessage">发送消息</witalk-button>
                 <br />
-                <lemon-button @click="updateContact">修改联系人信息</lemon-button>
-                <lemon-button @click="changeMenuVisible">切换导航显示</lemon-button>
-                <lemon-button @click="changeMenuAvatarVisible">
+                <witalk-button @click="updateContact">修改联系人信息</witalk-button>
+                <witalk-button @click="changeMenuVisible">切换导航显示</witalk-button>
+                <witalk-button @click="changeMenuAvatarVisible">
                     切换头像显示
-                </lemon-button>
-                <lemon-button @click="changeMessageNameVisible">
+                </witalk-button>
+                <witalk-button @click="changeMessageNameVisible">
                     切换聊天窗口内名字显示
-                </lemon-button>
-                <lemon-button @click="changeMessageTimeVisible">
+                </witalk-button>
+                <witalk-button @click="changeMessageTimeVisible">
                     切换聊天窗口内时间显示
-                </lemon-button>
-                <lemon-button @click="changeTheme">
+                </witalk-button>
+                <witalk-button @click="changeTheme">
                     切换主题，当前主题：{{theme}}
-                </lemon-button>
+                </witalk-button>
             </div>
         </div>
 
@@ -91,9 +91,9 @@
             <div style="margin:0 55px;">
                 <div class="title">精简模式</div>
                 <div class="imui-center">
-                    <lemon-imui
+                    <witalk-imui
                         ref="SimpleIMUI"
-                        class="lemon-simple"
+                        class="witalk-simple"
                         :user="user"
                         width="340px"
                         :avatar-cricle="true"
@@ -101,11 +101,11 @@
                         @pull-messages="handlePullMessages"
                         @message-click="handleMessageClick"
                         @send="handleSend"
-                    ></lemon-imui>
+                    ></witalk-imui>
                     <a
                         target="_blank"
                         style="font-size:14px"
-                        href="https://codesandbox.io/s/lemon-imui-jingjianmoshi-forked-1lvoh?fontsize=14&hidenavigation=1&theme=dark"
+                        href="https://codesandbox.io/s/witalk-imui-jingjianmoshi-forked-1lvoh?fontsize=14&hidenavigation=1&theme=dark"
                     >在线编辑代码</a>
                 </div>
             </div>
@@ -832,13 +832,13 @@
         <div id="help1" class="title">如何创建自定义消息？</div>
         <div>
             <p>
-                Lemon-IMUI
+                Witalk-IMUI
                 目前内置了file、image、text、event四种消息类型，在实际应用当中肯定是不够的哦，咋办？没事的，我们继续往下see。<br />要创建消息首先要确定新消息的
                 Message 结构。
             </p>
             <pre>
 {
-  //值为 voice，用于解析的组件 name 必须为 lemonMessageVoice
+  //值为 voice，用于解析的组件 name 必须为 WitalkMessageVoice
   type: "voice",
   content: '语音消息',
   //自定义参数
@@ -871,10 +871,10 @@ IMUI.setLastContentRender('voice', message => {
             <p>最后一步，注册组件，必须使用全局注册的方式。</p>
             <pre>
 import Vue from 'vue';
-import LemonMessageVoice from './lemon-message-voice';
-Vue.component(LemonMessageVoice.name,LemonMessageVoice);
+import WitalkMessageVoice from './witalk-message-voice';
+Vue.component(WitalkMessageVoice.name,WitalkMessageVoice);
 </pre>
-            <p>如果还有不明白的，可以到 examples/App.vue 查看示例代码</p>
+            <p>如果还有不明白的，可以到 demo/App.vue 查看示例代码</p>
         </div>
 
         <div id="help2" class="title">如何对接后端接口？</div>
@@ -889,7 +889,7 @@ Vue.component(LemonMessageVoice.name,LemonMessageVoice);
             "
         ></pre>
         <pre
-            v-text="`<lemon-imui :user='this.user' ref='IMUI'></lemon-imui>`"
+            v-text="`<witalk-imui :user='this.user' ref='IMUI'></witalk-imui>`"
         ></pre>
         <p>2.初始化联系人数据</p>
         <pre
@@ -922,7 +922,7 @@ Vue.component(LemonMessageVoice.name,LemonMessageVoice);
         </p>
         <pre
             v-text="
-                `<lemon-imui :user='this.user' ref='IMUI' @pull-messages='handlePullMessages'></lemon-imui>`
+                `<witalk-imui :user='this.user' ref='IMUI' @pull-messages='handlePullMessages'></witalk-imui>`
             "
         ></pre>
         <pre
@@ -991,25 +991,25 @@ WebSocket.onmessage = function(event) {
 
 <script>
 import Vue from 'vue';
-import LemonMessageVoice from './lemon-message-voice';
+import WitalkMessageVoice from './witalk-message-voice';
 import QQIMUI from './qq';
 import packageData from '../package.json';
 import EmojiData from './database/emoji';
 
-Vue.component(LemonMessageVoice.name, LemonMessageVoice);
+Vue.component(WitalkMessageVoice.name, WitalkMessageVoice);
 Vue.component(QQIMUI.name, QQIMUI);
 
 const tip = `export default {
-  //组件的name必须以lemonMessage开头，后面跟上 Message.type
-  name: "lemonMessageVoice",
+  //组件的name必须以WitalkMessage开头，后面跟上 Message.type
+  name: "WitalkMessageVoice",
   inheritAttrs: false,
   //如果需要使用父组件的方法，可以使用注入。
   inject: ["IMUI"],
   render() {
-    //lemon-message-basic 组件对气泡框、头像、事件等信息进行了公共的处理。
+    //witalk-message-basic 组件对气泡框、头像、事件等信息进行了公共的处理。
     return (
-      <lemon-message-basic
-        class="lemon-message-voice"
+      <witalk-message-basic
+        class="witalk-message-voice"
         props={{ ...this.$attrs }}
         scopedSlots={{
           content: props => {
@@ -1022,18 +1022,18 @@ const tip = `export default {
   }
 };
 <style lang="less">
-.lemon-message.lemon-message-voice {
+.witalk-message.witalk-message-voice {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
-.lemon-message.lemon-message-voice .lemon-message-content {
+.witalk-message.witalk-message-voice .witalk-message-content {
     border: 2px solid #000;
     font-size: 12px;
     cursor: pointer;
 }
-.lemon-message.lemon-message-voice .lemon-message-content::before {
+.witalk-message.witalk-message-voice .witalk-message-content::before {
     display: none;
 }
 </style>`;
@@ -1090,7 +1090,7 @@ export default {
                     text: '投诉'
                 },
                 {
-                    icon: 'lemon-icon-message',
+                    icon: 'witalk-icon-message',
                     // eslint-disable-next-line no-unused-vars
                     render: (h, instance, hide) => (
                         <div style="display:flex;justify-content:space-between;align-items:center;width:130px">
@@ -1176,7 +1176,7 @@ export default {
                         IMUI.removeMessage(message.id);
                         hide();
                     },
-                    icon: 'lemon-icon-folder',
+                    icon: 'witalk-icon-folder',
                     color: 'red',
                     text: '删除'
                 }
@@ -1279,7 +1279,7 @@ export default {
                 name: 'custom1',
                 title: '自定义按钮1',
                 unread: 0,
-                render: () => <i class="lemon-icon-attah" />,
+                render: () => <i class="witalk-icon-attah" />,
                 renderContainer: () => (
                     <div class="article">
                     <ul>
@@ -1299,11 +1299,11 @@ export default {
                         知名连锁咖啡店的蛋糕吃出活虫 曝光内幕太震惊
                         </li>
                     </ul>
-                    <lemon-contact
+                    <witalk-contact
                         props={{ contact: contactData1 }}
                         style="margin:20px"
                     />
-                    <lemon-contact
+                    <witalk-contact
                         props={{ contact: contactData3 }}
                         style="margin:20px"
                     />
@@ -1319,7 +1319,7 @@ export default {
                     // eslint-disable-next-line no-alert
                     alert('拦截导航点击事件');
                 },
-                render: () => <i class="lemon-icon-group" />,
+                render: () => <i class="witalk-icon-group" />,
                 isBottom: true
             }
         ]);
@@ -1615,7 +1615,7 @@ a {
 .action {
     margin-top: 20px;
 }
-.action .lemon-button {
+.action .witalk-button {
     margin-right: 10px;
     margin-bottom: 10px;
 }
@@ -1703,10 +1703,10 @@ a {
 .imui-center {
     margin-bottom: 60px;
 }
-.imui-center .lemon-wrapper {
+.imui-center .witalk-wrapper {
     border: 1px solid #ddd;
 }
-.imui-center .lemon-drawer {
+.imui-center .witalk-drawer {
     border: 1px solid #ddd;
     border-left: 0;
 }
@@ -1780,10 +1780,10 @@ pre {
     border-radius: 8px;
     padding: 15px;
 }
-.lemon-simple .lemon-container {
+.witalk-simple .witalk-container {
     z-index: 5;
 }
-.lemon-simple .lemon-drawer {
+.witalk-simple .witalk-drawer {
     z-index: 4;
 }
 input#switch[type="checkbox"] {

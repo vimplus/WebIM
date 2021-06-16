@@ -1,11 +1,11 @@
 <script>
 export default {
-    name: 'lemonMessageImage',
+    name: 'WitalkMessageImage',
     inheritAttrs: false,
     render() {
         return (
-            <lemon-message-basic
-                class="lemon-message-image"
+            <witalk-message-basic
+                class="witalk-message-image"
                 props={{ ...this.$attrs }}
                 scopedSlots={{
                     content: props => <img src={props.content} />
@@ -16,12 +16,12 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-message-image .lemon-message-content {
+.witalk-message-image .witalk-message-content {
     padding: 0;
     cursor: pointer;
     overflow: hidden;
 }
-.lemon-message-image .lemon-message-content img {
+.witalk-message-image .witalk-message-content img {
     max-width: 100%;
     min-width: 100px;
     display: block;

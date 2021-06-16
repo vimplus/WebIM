@@ -1,6 +1,6 @@
 <template>
     <button
-        :class="['lemon-button', `lemon-button-color-${color}`]"
+        :class="['witalk-button', `witalk-button-color-${color}`]"
         :disabled="disabled"
         type="button"
         @click="_handleClick"
@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-    name: 'LemonButton',
+    name: 'WitalkButton',
     props: {
         color: {
             type: String,
@@ -26,7 +26,7 @@ export default {
     // render() {
     //     return (
     //         <button
-    //           class={['lemon-button', `lemon-button-color-${this.color}`]}
+    //           class={['witalk-button', `witalk-button-color-${this.color}`]}
     //           disabled={this.disabled}
     //           type="button"
     //           on-click={this._handleClick}
@@ -38,7 +38,7 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-button {
+.witalk-button {
     outline: none;
     line-height: 1.499;
     display: inline-block;
@@ -68,24 +68,24 @@ export default {
     box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
 }
-.lemon-button-color-default:hover:not([disabled]) {
+.witalk-button-color-default:hover:not([disabled]) {
     border-color: #666;
     color: #333;
 }
-.lemon-button-color-default:active {
+.witalk-button-color-default:active {
     background-color: #ddd;
 }
-.lemon-button-color-default[disabled] {
+.witalk-button-color-default[disabled] {
     cursor: not-allowed;
     color: #aaa;
     background: #eee;
 }
-.lemon-button-color-grey {
+.witalk-button-color-grey {
     background: #e1e1e1;
     border-color: #e1e1e1;
     color: #666;
 }
-.lemon-button-color-grey:hover:not([disabled]) {
+.witalk-button-color-grey:hover:not([disabled]) {
     border-color: #bbb;
 }
 </style>

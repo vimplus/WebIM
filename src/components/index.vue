@@ -24,7 +24,7 @@ const toPoint = str => str.replace('%', '') / 100;
 let renderDrawerContent = () => {};
 
 export default {
-    name: 'LemonImui',
+    name: 'WitalkImui',
     provide() {
         return {
             IMUI: this
@@ -260,10 +260,10 @@ export default {
                     }}
                     ref="wrapper"
                     class={[
-                        'lemon-wrapper',
-                        `lemon-wrapper-theme-${this.theme}`,
-                        { 'lemon-wrapper-simple': this.simple },
-                        this.drawerVisible && 'lemon-wrapper-drawer-show'
+                        'witalk-wrapper',
+                        `witalk-wrapper-theme-${this.theme}`,
+                        { 'witalk-wrapper-simple': this.simple },
+                        this.drawerVisible && 'witalk-wrapper-drawer-show'
                     ]}
                 >
                     {children}
@@ -273,20 +273,20 @@ export default {
         _renderMenu() {
             const menuItem = this._renderMenuItem();
             return (
-                <div class="lemon-menu" v-show={!this.hideMenu}>
+                <div class="witalk-menu" v-show={!this.hideMenu}>
                     {
-                        <lemon-avatar
+                        <witalk-avatar
                             v-show={!this.hideMenuAvatar}
                             onClick={(e) => {
                                 this.$emit('menu-avatar-click', e);
                             }}
-                            class="lemon-menu-avatar"
+                            class="witalk-menu-avatar"
                             src={this.user.avatar}
                         />
                     }
                     {menuItem.top}
                     {this.$slots.menu}
-                    <div class="lemon-menu-bottom">
+                    <div class="witalk-menu-bottom">
                         {this.$slots['menu-bottom']}
                         {menuItem.bottom}
                     </div>
@@ -306,8 +306,8 @@ export default {
                 const node = (
                     <div
                         class={[
-                            'lemon-menu-item',
-                            { 'lemon-menu-item-active': this.activeSidebar === name }
+                            'witalk-menu-item',
+                            { 'witalk-menu-item-active': this.activeSidebar === name }
                         ]}
                         onClick={() => {
                             funCall(click, () => {
@@ -316,7 +316,7 @@ export default {
                         }}
                         title={title}
                     >
-                        <lemon-badge count={unread}>{render(item)}</lemon-badge>
+                        <witalk-badge count={unread}>{render(item)}</witalk-badge>
                     </div>
                 );
                 item.isBottom === true ? bottom.push(node) : top.push(node);
@@ -365,11 +365,11 @@ export default {
             };
 
             return (
-                <lemon-contact
+                <witalk-contact
                     class={{
-                        'lemon-contact-active': this.currentContactId === props.contact.id
+                        'witalk-contact-active': this.currentContactId === props.contact.id
                     }}
-                    v-lemon-contextmenu_contact={this.contactContextmenu}
+                    v-witalk-contextmenu_contact={this.contactContextmenu}
                     props={props}
                     onClick={click}
                     scopedSlots={{ default: slot }}
@@ -378,7 +378,7 @@ export default {
         },
         _renderSidebarContact() {
             let prevIndex;
-            console.log('this.$scopedSlots["sidebar-contact"]:', this.$scopedSlots);
+            // console.log('this.$scopedSlots:', this.$scopedSlots);
             return this._renderSidebar(
                 [
                     useScopedSlot(this.$scopedSlots['sidebar-contact-top'], null, this),
@@ -387,7 +387,7 @@ export default {
                         contact.index = contact.index.replace(/\[[0-9]*\]/, '');
                         const node = [
                             contact.index !== prevIndex && (
-                                <p class="lemon-sidebar-label">{contact.index}</p>
+                                <p class="witalk-sidebar-label">{contact.index}</p>
                             ),
                             this._renderContact(
                                 {
@@ -415,18 +415,18 @@ export default {
         _renderSidebar(children, name, fixedtop) {
             return (
                 <div
-                    class="lemon-sidebar"
+                    class="witalk-sidebar"
                     v-show={this.activeSidebar === name}
                     on-scroll={this._handleSidebarScroll}
                 >
-                    <div class="lemon-sidebar-fixed-top">{fixedtop}</div>
-                    <div class="lemon-sidebar-scroll">{children}</div>
+                    <div class="witalk-sidebar-fixed-top">{fixedtop}</div>
+                    <div class="witalk-sidebar-scroll">{children}</div>
                 </div>
             );
         },
         _renderDrawer() {
             return this._menuIsMessages() && this.currentContactId ? (
-              <div class="lemon-drawer" ref="drawer">
+              <div class="witalk-drawer" ref="drawer">
                 {renderDrawerContent(this.currentContact)}
                 {useScopedSlot(this.$scopedSlots.drawer, '', this.currentContact)}
               </div>) : ('');
@@ -436,7 +436,7 @@ export default {
         },
         _renderContainer() {
             const nodes = [];
-            const cls = 'lemon-container';
+            const cls = 'witalk-container';
             const curact = this.currentContact;
             let defIsShow = true;
             const cacheContactContainer = this.CacheContactContainer.get();
@@ -470,18 +470,18 @@ export default {
 
             nodes.push(
                 <div class={cls} v-show={this._menuIsMessages() && defIsShow && curact.id}>
-                    <div class="lemon-container-title">
+                    <div class="witalk-container-title">
                         {useScopedSlot(
                             this.$scopedSlots['message-title'],
-                            <div class="lemon-container-displayname">
+                            <div class="witalk-container-displayname">
                                 {curact.displayName}
                             </div>,
                             curact
                         )}
                     </div>
-                    <div class="lemon-vessel">
-                        <div class="lemon-vessel-left">
-                            <lemon-messages
+                    <div class="witalk-vessel">
+                        <div class="witalk-vessel-left">
+                            <witalk-messages
                                 ref="messages"
                                 loading-text={this.loadingText}
                                 loadend-text={this.loadendText}
@@ -492,19 +492,19 @@ export default {
                                 on-reach-top={this._emitPullMessages}
                                 messages={this.currentMessages}
                             />
-                            <lemon-editor
+                            <witalk-editor
                                 ref="editor"
                                 tools={this.editorTools}
                                 sendText={this.sendText}
                                 sendKey={this.sendKey}
                                 onSend={this._handleSend}
                                 onUpload={this._handleUpload}
-                                scopedSlots={{
-                                    editorFooter: this.$scopedSlots.editorFooter
-                                }}
+                                // scopedSlots={{
+                                //     editorFooter: this.$scopedSlots.editorFooter
+                                // }}
                             />
                         </div>
-                        <div class="lemon-vessel-right">
+                        <div class="witalk-vessel-right">
                             {useScopedSlot(this.$scopedSlots['message-side'], null, curact)}
                         </div>
                     </div>
@@ -522,10 +522,10 @@ export default {
                 >
                 {useScopedSlot(
                     this.$scopedSlots['contact-info'],
-                    <div class="lemon-contact-info">
-                        <lemon-avatar src={curact.avatar} size={90} />
+                    <div class="witalk-contact-info">
+                        <witalk-avatar src={curact.avatar} size={90} />
                         <h4>{curact.displayName}</h4>
-                        <lemon-button
+                        <witalk-button
                             onClick={() => {
                                 if (isEmpty(curact.lastContent)) {
                                     this.updateContact({
@@ -537,7 +537,7 @@ export default {
                             }}
                         >
                             发送消息
-                        </lemon-button>
+                        </witalk-button>
                     </div>,
                     curact
                 )}
@@ -761,7 +761,7 @@ export default {
             this.activeSidebar = name;
         },
         /**
-         * 初始化编辑框的 Emoji 表情列表，是 Lemon-editor.initEmoji 的代理方法
+         * 初始化编辑框的 Emoji 表情列表，是 Witalk-editor.initEmoji 的代理方法
          * @param {Array<Emoji,EmojiItem>} data emoji 数据
          * Emoji = {label: 表情,children: [{name: wx,title: 微笑,src: url}]} 分组
          * EmojiItem = {name: wx,title: 微笑,src: url} 无分组
@@ -794,7 +794,7 @@ export default {
                     title: '聊天',
                     unread: 0,
                     click: null,
-                    render: () => <i class="lemon-icon-message" />,
+                    render: () => <i class="witalk-icon-message" />,
                     isBottom: false
                 },
                 {
@@ -802,7 +802,7 @@ export default {
                     title: '通讯录',
                     unread: 0,
                     click: null,
-                    render: () => <i class="lemon-icon-addressbook" />,
+                    render: () => <i class="witalk-icon-addressbook" />,
                     isBottom: false
                 }
             ];
@@ -1043,7 +1043,7 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-wrapper {
+.witalk-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1054,14 +1054,14 @@ export default {
   transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   position: relative;
 }
-.lemon-wrapper p {
+.witalk-wrapper p {
   margin: 0;
 }
-.lemon-wrapper img {
+.witalk-wrapper img {
   vertical-align: middle;
   border-style: none;
 }
-.lemon-menu {
+.witalk-menu {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1081,7 +1081,7 @@ export default {
   -ms-user-select: none;
   user-select: none;
 }
-.lemon-menu-bottom {
+.witalk-menu-bottom {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1092,11 +1092,11 @@ export default {
   position: absolute;
   bottom: 0;
 }
-.lemon-menu-avatar {
+.witalk-menu-avatar {
   margin-bottom: 20px;
   cursor: pointer;
 }
-.lemon-menu-item {
+.witalk-menu-item {
   color: #999;
   cursor: pointer;
   padding: 14px 10px;
@@ -1105,28 +1105,28 @@ export default {
   word-wrap: break-word;
   white-space: pre-wrap;
 }
-.lemon-menu-item-active {
+.witalk-menu-item-active {
   color: #0fd547;
 }
-.lemon-menu-item:hover:not(.lemon-menu-item-active) {
+.witalk-menu-item:hover:not(.witalk-menu-item-active) {
   color: #eee;
 }
-.lemon-menu-item > * {
+.witalk-menu-item > * {
   font-size: 24px;
 }
-.lemon-menu-item .ant-badge-count {
+.witalk-menu-item .ant-badge-count {
   display: inline-block;
   padding: 0 4px;
   height: 18px;
   line-height: 16px;
   min-width: 18px;
 }
-.lemon-menu-item .ant-badge-count,
-.lemon-menu-item .ant-badge-dot {
+.witalk-menu-item .ant-badge-count,
+.witalk-menu-item .ant-badge-dot {
   -webkit-box-shadow: 0 0 0 1px #1d232a;
   box-shadow: 0 0 0 1px #1d232a;
 }
-.lemon-sidebar {
+.witalk-sidebar {
   width: 250px;
   background: #efefef;
   display: -webkit-box;
@@ -1137,35 +1137,35 @@ export default {
   -ms-flex-direction: column;
   flex-direction: column;
 }
-.lemon-sidebar-scroll {
+.witalk-sidebar-scroll {
   overflow-y: auto;
 }
-.lemon-sidebar-scroll::-webkit-scrollbar {
+.witalk-sidebar-scroll::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
-.lemon-sidebar-scroll::-webkit-scrollbar-track-piece {
+.witalk-sidebar-scroll::-webkit-scrollbar-track-piece {
   background-color: transparent;
 }
-.lemon-sidebar-scroll::-webkit-scrollbar-thumb:vertical {
+.witalk-sidebar-scroll::-webkit-scrollbar-thumb:vertical {
   height: 5px;
   background-color: #aaa;
 }
-.lemon-sidebar-scroll::-webkit-scrollbar-thumb:horizontal {
+.witalk-sidebar-scroll::-webkit-scrollbar-thumb:horizontal {
   width: 5px;
   background-color: transparent;
 }
-.lemon-sidebar-label {
+.witalk-sidebar-label {
   padding: 6px 14px 6px 14px;
   color: #666;
   font-size: 12px;
   margin: 0;
   text-align: left;
 }
-.lemon-sidebar .lemon-contact-active {
+.witalk-sidebar .witalk-contact-active {
   background: #d9d9d9;
 }
-.lemon-container {
+.witalk-container {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -1183,13 +1183,13 @@ export default {
   position: relative;
   z-index: 10;
 }
-.lemon-container-title {
+.witalk-container-title {
   padding: 15px 15px;
 }
-.lemon-container-displayname {
+.witalk-container-displayname {
   font-size: 16px;
 }
-.lemon-vessel {
+.witalk-vessel {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1198,7 +1198,7 @@ export default {
   flex: 1;
   min-height: 100px;
 }
-.lemon-vessel-left {
+.witalk-vessel-left {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1210,18 +1210,18 @@ export default {
   -ms-flex: 1;
   flex: 1;
 }
-.lemon-vessel-right {
+.witalk-vessel-right {
   -webkit-box-flex: 0;
   -ms-flex: none;
   flex: none;
 }
-.lemon-messages {
+.witalk-messages {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
   height: auto;
 }
-.lemon-drawer {
+.witalk-drawer {
   position: absolute;
   top: 0;
   overflow: hidden;
@@ -1229,10 +1229,10 @@ export default {
   z-index: 11;
   display: none;
 }
-.lemon-wrapper-drawer-show .lemon-drawer {
+.witalk-wrapper-drawer-show .witalk-drawer {
   display: block;
 }
-.lemon-contact-info {
+.witalk-contact-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1248,7 +1248,7 @@ export default {
   align-items: center;
   height: 100%;
 }
-.lemon-contact-info h4 {
+.witalk-contact-info h4 {
   font-size: 16px;
   font-weight: normal;
   margin: 10px 0 20px 0;
@@ -1257,60 +1257,60 @@ export default {
   -ms-user-select: none;
   user-select: none;
 }
-.lemon-wrapper-theme-blue .lemon-message-content {
+.witalk-wrapper-theme-blue .witalk-message-content {
   background: #f3f3f3;
 }
-.lemon-wrapper-theme-blue .lemon-message-content::before {
+.witalk-wrapper-theme-blue .witalk-message-content::before {
   border-right-color: #f3f3f3;
 }
-.lemon-wrapper-theme-blue .lemon-message-reverse .lemon-message-content {
+.witalk-wrapper-theme-blue .witalk-message-reverse .witalk-message-content {
   background: #e6eeff;
 }
-.lemon-wrapper-theme-blue
-  .lemon-message-reverse
-  .lemon-message-content::before {
+.witalk-wrapper-theme-blue
+  .witalk-message-reverse
+  .witalk-message-content::before {
   border-left-color: #e6eeff;
 }
-.lemon-wrapper-theme-blue .lemon-container {
+.witalk-wrapper-theme-blue .witalk-container {
   background: #fff;
 }
-.lemon-wrapper-theme-blue .lemon-sidebar {
+.witalk-wrapper-theme-blue .witalk-sidebar {
   background: #f9f9f9;
 }
-.lemon-wrapper-theme-blue .lemon-sidebar .lemon-contact {
+.witalk-wrapper-theme-blue .witalk-sidebar .witalk-contact {
   background: #f9f9f9;
 }
-.lemon-wrapper-theme-blue
-  .lemon-sidebar
-  .lemon-contact:hover:not(.lemon-contact-active) {
+.witalk-wrapper-theme-blue
+  .witalk-sidebar
+  .witalk-contact:hover:not(.witalk-contact-active) {
   background: #f1f1f1;
 }
-.lemon-wrapper-theme-blue .lemon-sidebar .lemon-contact-active {
+.witalk-wrapper-theme-blue .witalk-sidebar .witalk-contact-active {
   background: #e9e9e9;
 }
-.lemon-wrapper-theme-blue .lemon-menu {
+.witalk-wrapper-theme-blue .witalk-menu {
   background: #096bff;
 }
-.lemon-wrapper-theme-blue .lemon-menu-item {
+.witalk-wrapper-theme-blue .witalk-menu-item {
   color: rgba(255, 255, 255, 0.4);
 }
-.lemon-wrapper-theme-blue
-  .lemon-menu-item:hover:not(.lemon-menu-item-active) {
+.witalk-wrapper-theme-blue
+  .witalk-menu-item:hover:not(.witalk-menu-item-active) {
   color: rgba(255, 255, 255, 0.6);
 }
-.lemon-wrapper-theme-blue .lemon-menu-item-active {
+.witalk-wrapper-theme-blue .witalk-menu-item-active {
   color: #fff;
   text-shadow: 0 0 10px rgba(2, 48, 118, 0.4);
 }
-.lemon-wrapper-simple .lemon-menu,
-.lemon-wrapper-simple .lemon-sidebar {
+.witalk-wrapper-simple .witalk-menu,
+.witalk-wrapper-simple .witalk-sidebar {
   display: none;
 }
-.lemon-wrapper-simple .lemon-menu,
-.lemon-wrapper-simple .lemon-sidebar {
+.witalk-wrapper-simple .witalk-menu,
+.witalk-wrapper-simple .witalk-sidebar {
   display: none;
 }
-.lemon-contextmenu {
+.witalk-contextmenu {
   border-radius: 4px;
   font-size: 14px;
   font-variant: tabular-nums;
@@ -1333,7 +1333,7 @@ export default {
   overflow: hidden;
   min-width: 120px;
 }
-.lemon-contextmenu-item {
+.witalk-contextmenu-item {
   font-size: 14px;
   line-height: 16px;
   padding: 10px 15px;
@@ -1346,7 +1346,7 @@ export default {
   align-items: center;
   color: #333;
 }
-.lemon-contextmenu-item > span {
+.witalk-contextmenu-item > span {
   display: inline-block;
   -webkit-box-flex: 0;
   -ms-flex: none;
@@ -1355,14 +1355,14 @@ export default {
   overflow: hidden;
   white-space: nowrap;
 }
-.lemon-contextmenu-item:hover {
+.witalk-contextmenu-item:hover {
   background: #f3f3f3;
   color: #000;
 }
-.lemon-contextmenu-item:active {
+.witalk-contextmenu-item:active {
   background: #e9e9e9;
 }
-.lemon-contextmenu-icon {
+.witalk-contextmenu-icon {
   font-size: 16px;
   margin-right: 4px;
 }

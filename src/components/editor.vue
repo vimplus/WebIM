@@ -1,63 +1,3 @@
-<template>
-    <div class="lemon-editor">
-        <div v-if="clipboardUrl" class="lemon-editor-clipboard-image">
-            <img :src="clipboardUrl" />
-            <div>
-                <lemon-button
-                    color="grey"
-                    :style="{ marginRight: '10px' }"
-                    @click="closeClipboardImage"
-                >
-                    取消
-                </lemon-button>
-                <lemon-button @click="sendClipboardImage">
-                    发送图片
-                </lemon-button>
-            </div>
-        </div>
-        <input
-            ref="fileInput"
-            style="display:none"
-            type="file"
-            multiple="multiple"
-            :accept="accept"
-            @change="_handleChangeFile"
-        />
-        <div class="lemon-editor-tool">
-            <!-- <div class="lemon-editor-tool-left">{toolLeft}</div>
-            <div class="lemon-editor-tool-right">{toolRight}</div> -->
-        </div>
-        <div class="lemon-editor-inner">
-            <div
-                ref="textarea"
-                class="lemon-editor-input"
-                contenteditable="true"
-                spellcheck="false"
-                @keyup="_handleKeyup"
-                @keydown="_handleKeydown"
-                @paste="_handlePaste"
-                @click="_handleClick"
-            />
-        </div>
-        <div class="lemon-editor-footer">
-            <div class="lemon-editor-tip">
-                <slot name="editorFooter">使用 ctrl + enter 快捷发送消息</slot>
-                <!-- {useScopedSlot(
-                    this.IMUI.$scopedSlots['editor-footer'],
-                    '使用 ctrl + enter 快捷发送消息'
-                )} -->
-            </div>
-            <div class="lemon-editor-submit">
-                <lemon-button
-                    :disabled="submitDisabled"
-                    @click="_handleSend"
-                >
-                    {{sendText}}
-                </lemon-button>
-            </div>
-        </div>
-    </div>
-</template>
 <script>
 import { useScopedSlot, clearHtmlExcludeImg } from '@/utils';
 
@@ -69,7 +9,7 @@ let lastSelectionRange;
 let emojiData = [];
 // const isInitTool = false;
 export default {
-    name: 'LemonEditor',
+    name: 'WitalkEditor',
     components: {},
     inject: {
         IMUI: {
@@ -97,7 +37,6 @@ export default {
     },
     data() {
         this.clipboardBlob = null;
-        // debugger
         return {
             // 剪切板图片URL
             clipboardUrl: '',
@@ -108,6 +47,8 @@ export default {
         };
     },
     created() {
+        this.$scopedSlots = this.IMUI.$scopedSlots;
+        // debugger
         if (this.tools && this.tools.length > 0) {
             this.initTools(this.tools);
         } else {
@@ -120,6 +61,10 @@ export default {
         this.IMUI.$on('change-contact', () => {
             this.closeClipboardImage();
         });
+    },
+    mounted() {
+        this.$scopedSlots = this.IMUI.$scopedSlots;
+        // debugger
     },
     methods: {
         closeClipboardImage() {
@@ -141,19 +86,19 @@ export default {
                     name: 'emoji',
                     title: '表情',
                     click: null,
-                    render: () => <i class="lemon-icon-emoji" />
+                    render: () => <i class="witalk-icon-emoji" />
                 },
                 {
                     name: 'uploadFile',
                     title: '文件上传',
                     click: () => this.selectFile('*'),
-                    render: () => <i class="lemon-icon-folder" />
+                    render: () => <i class="witalk-icon-folder" />
                 },
                 {
                     name: 'uploadImage',
                     title: '图片上传',
                     click: () => this.selectFile('image/*'),
-                    render: () => <i class="lemon-icon-image" />
+                    render: () => <i class="witalk-icon-image" />
                 }
             ];
             let tools = [];
@@ -196,7 +141,7 @@ export default {
                 <img
                     src={item.src}
                     title={item.title}
-                    class="lemon-editor-emoji-item"
+                    class="witalk-editor-emoji-item"
                     onClick={() => this._handleSelectEmoji(item)}
                 />
             ));
@@ -206,10 +151,10 @@ export default {
                         {renderImageGrid(item.children)}
                     </div>
                 ));
-                return <lemon-tabs style="width: 412px">{nodes}</lemon-tabs>;
+                return <witalk-tabs style="width: 412px">{nodes}</witalk-tabs>;
             }
             return (
-                <div class="lemon-tabs-content" style="width:406px">
+                <div class="witalk-tabs-content" style="width:406px">
                     {renderImageGrid(emojiData)}
                 </div>
             );
@@ -313,22 +258,22 @@ export default {
         }) => {
             click = click || function () {};
             const classes = [
-                'lemon-editor-tool-item',
-                { 'lemon-editor-tool-item-right': isRight }
+                'witalk-editor-tool-item',
+                { 'witalk-editor-tool-item-right': isRight }
             ];
             let node;
             if (name === 'emoji') {
                 node = emojiData.length === 0 ? (
                     ''
                 ) : (
-                    <lemon-popover class="lemon-editor-emoji">
+                    <witalk-popover class="witalk-editor-emoji">
                         <template slot="content">
                             {this._renderEmojiTabs()}
                         </template>
                         <div class={classes} title={title}>
                             {render()}
                         </div>
-                    </lemon-popover>
+                    </witalk-popover>
                 );
             } else {
                 node = (
@@ -345,21 +290,21 @@ export default {
         });
 
         return (
-            <div class="lemon-editor">
+            <div class="witalk-editor">
                 {this.clipboardUrl && (
-                    <div class="lemon-editor-clipboard-image">
+                    <div class="witalk-editor-clipboard-image">
                         <img src={this.clipboardUrl} />
                         <div>
-                            <lemon-button
+                            <witalk-button
                                 style={{ marginRight: '10px' }}
                                 onClick={this.closeClipboardImage}
                                 color="grey"
                             >
                                 取消
-                            </lemon-button>
-                            <lemon-button onClick={this.sendClipboardImage}>
+                            </witalk-button>
+                            <witalk-button onClick={this.sendClipboardImage}>
                                 发送图片
-                            </lemon-button>
+                            </witalk-button>
                         </div>
                     </div>
                 )}
@@ -371,13 +316,13 @@ export default {
                     accept={this.accept}
                     onChange={this._handleChangeFile}
                 />
-                <div class="lemon-editor-tool">
-                    <div class="lemon-editor-tool-left">{toolLeft}</div>
-                    <div class="lemon-editor-tool-right">{toolRight}</div>
+                <div class="witalk-editor-tool">
+                    <div class="witalk-editor-tool-left">{toolLeft}</div>
+                    <div class="witalk-editor-tool-right">{toolRight}</div>
                 </div>
-                <div class="lemon-editor-inner">
+                <div class="witalk-editor-inner">
                     <div
-                        class="lemon-editor-input"
+                        class="witalk-editor-input"
                         ref="textarea"
                         contenteditable="true"
                         onKeyup={this._handleKeyup}
@@ -387,20 +332,20 @@ export default {
                         spellcheck="false"
                     />
                 </div>
-                <div class="lemon-editor-footer">
-                    <div class="lemon-editor-tip">
+                <div class="witalk-editor-footer">
+                    <div class="witalk-editor-tip">
                         {useScopedSlot(
                             this.IMUI.$scopedSlots['editor-footer'],
                             '使用 ctrl + enter 快捷发送消息'
                         )}
                     </div>
-                    <div class="lemon-editor-submit">
-                        <lemon-button
+                    <div class="witalk-editor-submit">
+                        <witalk-button
                             disabled={this.submitDisabled}
                             onClick={this._handleSend}
                         >
                             {this.sendText}
-                        </lemon-button>
+                        </witalk-button>
                     </div>
                 </div>
             </div>
@@ -409,7 +354,7 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-editor {
+.witalk-editor {
     height: 200px;
     position: relative;
     display: -webkit-box;
@@ -420,7 +365,7 @@ export default {
     -ms-flex-direction: column;
     flex-direction: column;
 }
-.lemon-editor-tool {
+.witalk-editor-tool {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -434,17 +379,17 @@ export default {
     padding: 0 5px;
     border-top: 1px solid #ebebeb;
 }
-.lemon-editor-tool-left {
+.witalk-editor-tool-left {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
 }
-.lemon-editor-tool-right {
+.witalk-editor-tool-right {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
 }
-.lemon-editor-tool-item {
+.witalk-editor-tool-item {
     cursor: pointer;
     padding: 4px 10px;
     height: 28px;
@@ -454,39 +399,39 @@ export default {
     transition: all ease 0.3s;
     font-size: 12px;
 }
-.lemon-editor-tool-item [class^="lemon-icon-"] {
+.witalk-editor-tool-item [class^="witalk-icon-"] {
     line-height: 26px;
     font-size: 22px;
 }
-.lemon-editor-tool-item:hover {
+.witalk-editor-tool-item:hover {
     color: #333;
 }
-.lemon-editor-tool-item-right {
+.witalk-editor-tool-item-right {
     margin-left: auto;
 }
-.lemon-editor-inner {
+.witalk-editor-inner {
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
     overflow-x: hidden;
     overflow-y: auto;
 }
-.lemon-editor-inner::-webkit-scrollbar {
+.witalk-editor-inner::-webkit-scrollbar {
     width: 5px;
     height: 5px;
 }
-.lemon-editor-inner::-webkit-scrollbar-track-piece {
+.witalk-editor-inner::-webkit-scrollbar-track-piece {
     background-color: transparent;
 }
-.lemon-editor-inner::-webkit-scrollbar-thumb:vertical {
+.witalk-editor-inner::-webkit-scrollbar-thumb:vertical {
     height: 5px;
     background-color: #aaa;
 }
-.lemon-editor-inner::-webkit-scrollbar-thumb:horizontal {
+.witalk-editor-inner::-webkit-scrollbar-thumb:horizontal {
     width: 5px;
     background-color: transparent;
 }
-.lemon-editor-clipboard-image {
+.witalk-editor-clipboard-image {
     position: absolute;
     top: 0;
     left: 0;
@@ -508,7 +453,7 @@ export default {
     background: #f4f4f4;
     z-index: 1;
 }
-.lemon-editor-clipboard-image img {
+.witalk-editor-clipboard-image img {
     max-height: 66%;
     max-width: 80%;
     background: #e9e9e9;
@@ -523,11 +468,11 @@ export default {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-.lemon-editor-clipboard-image .clipboard-popover-title {
+.witalk-editor-clipboard-image .clipboard-popover-title {
     font-size: 14px;
     color: #333;
 }
-.lemon-editor-input {
+.witalk-editor-input {
     height: 100%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -535,26 +480,26 @@ export default {
     outline: none;
     padding: 0 10px;
 }
-.lemon-editor-input::-webkit-scrollbar {
+.witalk-editor-input::-webkit-scrollbar {
     width: 5px;
     height: 5px;
 }
-.lemon-editor-input::-webkit-scrollbar-track-piece {
+.witalk-editor-input::-webkit-scrollbar-track-piece {
     background-color: transparent;
 }
-.lemon-editor-input::-webkit-scrollbar-thumb:vertical {
+.witalk-editor-input::-webkit-scrollbar-thumb:vertical {
     height: 5px;
     background-color: #aaa;
 }
-.lemon-editor-input::-webkit-scrollbar-thumb:horizontal {
+.witalk-editor-input::-webkit-scrollbar-thumb:horizontal {
     width: 5px;
     background-color: transparent;
 }
-.lemon-editor-input p,
-.lemon-editor-input div {
+.witalk-editor-input p,
+.witalk-editor-input div {
     margin: 0;
 }
-.lemon-editor-input img {
+.witalk-editor-input img {
     height: 20px;
     padding: 0 2px;
     pointer-events: none;
@@ -562,7 +507,7 @@ export default {
     top: -1px;
     vertical-align: middle;
 }
-.lemon-editor-footer {
+.witalk-editor-footer {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -575,7 +520,7 @@ export default {
     -ms-flex-align: center;
     align-items: center;
 }
-.lemon-editor-tip {
+.witalk-editor-tip {
     margin-right: 10px;
     font-size: 12px;
     color: #999;
@@ -584,22 +529,22 @@ export default {
     -ms-user-select: none;
     user-select: none;
 }
-.lemon-editor-emoji {
+.witalk-editor-emoji {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
-.lemon-editor-emoji .lemon-popover {
+.witalk-editor-emoji .witalk-popover {
     background: #f6f6f6;
 }
-.lemon-editor-emoji .lemon-popover-content {
+.witalk-editor-emoji .witalk-popover-content {
     padding: 0;
 }
-.lemon-editor-emoji .lemon-popover-arrow {
+.witalk-editor-emoji .witalk-popover-arrow {
     background: #f6f6f6;
 }
-.lemon-editor-emoji .lemon-tabs-content {
+.witalk-editor-emoji .witalk-tabs-content {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding: 8px;
@@ -608,28 +553,28 @@ export default {
     overflow-y: auto;
     margin-bottom: 8px;
 }
-.lemon-editor-emoji .lemon-tabs-content::-webkit-scrollbar {
+.witalk-editor-emoji .witalk-tabs-content::-webkit-scrollbar {
     width: 5px;
     height: 5px;
 }
-.lemon-editor-emoji .lemon-tabs-content::-webkit-scrollbar-track-piece {
+.witalk-editor-emoji .witalk-tabs-content::-webkit-scrollbar-track-piece {
     background-color: transparent;
 }
-.lemon-editor-emoji .lemon-tabs-content::-webkit-scrollbar-thumb:vertical {
+.witalk-editor-emoji .witalk-tabs-content::-webkit-scrollbar-thumb:vertical {
     height: 5px;
     background-color: #aaa;
 }
-.lemon-editor-emoji .lemon-tabs-content::-webkit-scrollbar-thumb:horizontal {
+.witalk-editor-emoji .witalk-tabs-content::-webkit-scrollbar-thumb:horizontal {
     width: 5px;
     background-color: transparent;
 }
-.lemon-editor-emoji-item {
+.witalk-editor-emoji-item {
     cursor: pointer;
     width: 22px;
     padding: 4px;
     border-radius: 4px;
 }
-.lemon-editor-emoji-item:hover {
+.witalk-editor-emoji-item:hover {
     background: #e9e9e9;
 }
 </style>

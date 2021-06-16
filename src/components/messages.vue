@@ -4,7 +4,7 @@ import { isString } from '@/utils/validate';
 import contextmenu from '../directives/contextmenu';
 
 export default {
-    name: 'LemonMessages',
+    name: 'WitalkMessages',
     components: {},
     props: {
         // 是否隐藏消息发送人昵称
@@ -93,17 +93,17 @@ export default {
     },
     render() {
         return (
-            <div class="lemon-messages" ref="wrap" on-scroll={this._handleScroll}>
+            <div class="witalk-messages" ref="wrap" on-scroll={this._handleScroll}>
                 <div
                     class={[
-                        'lemon-messages-load',
-                        `lemon-messages-load-${this.loadend ? 'end' : 'ing'}`
+                        'witalk-messages-load',
+                        `witalk-messages-load-${this.loadend ? 'end' : 'ing'}`
                     ]}
                 >
-                <span class="lemon-messages-loadend">
+                <span class="witalk-messages-loadend">
                     {isString(this.loadendText) ? this.loadendText : this.loadendText()}
                 </span>
-                <span class="lemon-messages-loading">
+                <span class="witalk-messages-loading">
                     {this.loadingText ? (
                         isString(this.loadingText) ? (
                             this.loadingText
@@ -111,13 +111,13 @@ export default {
                             this.loadingText()
                         )
                     ) : (
-                        <i class="lemon-icon-loading lemonani-spin" />
+                        <i class="witalk-icon-loading witalk-anim-spin" />
                     )}
                 </span>
                 </div>
                 {this.messages.map((message, index) => {
                     const node = [];
-                    const tagName = `lemon-message-${message.type}`;
+                    const tagName = `witalk-message-${message.type}`;
                     const prev = this.messages[index - 1];
                     if (
                         prev
@@ -125,7 +125,7 @@ export default {
                         && message.sendTime - prev.sendTime > this.msecRange
                     ) {
                         node.push(
-                            <lemon-message-event
+                            <witalk-message-event
                                 attrs={{
                                     message: {
                                         id: '__time__',
@@ -160,32 +160,32 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-messages {
+.witalk-messages {
   height: 400px;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 10px 15px;
 }
-.lemon-messages::-webkit-scrollbar {
+.witalk-messages::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
-.lemon-messages::-webkit-scrollbar-track-piece {
+.witalk-messages::-webkit-scrollbar-track-piece {
   background-color: transparent;
 }
-.lemon-messages::-webkit-scrollbar-thumb:vertical {
+.witalk-messages::-webkit-scrollbar-thumb:vertical {
   height: 5px;
   background-color: #aaa;
 }
-.lemon-messages::-webkit-scrollbar-thumb:horizontal {
+.witalk-messages::-webkit-scrollbar-thumb:horizontal {
   width: 5px;
   background-color: transparent;
 }
-.lemon-messages-time {
+.witalk-messages-time {
   text-align: center;
   font-size: 12px;
 }
-.lemon-messages-load {
+.witalk-messages-load {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -195,17 +195,17 @@ export default {
   color: #999;
   line-height: 30px;
 }
-.lemon-messages-load .lemon-messages-loading,
-.lemon-messages-load .lemon-messages-loadend {
+.witalk-messages-load .witalk-messages-loading,
+.witalk-messages-load .witalk-messages-loadend {
   display: none;
 }
-.lemon-messages-load-ing .lemon-icon-loading {
+.witalk-messages-load-ing .witalk-icon-loading {
   font-size: 22px;
 }
-.lemon-messages-load-ing .lemon-messages-loading {
+.witalk-messages-load-ing .witalk-messages-loading {
   display: block;
 }
-.lemon-messages-load-end .lemon-messages-loadend {
+.witalk-messages-load-end .witalk-messages-loadend {
   display: block;
 }
 </style>

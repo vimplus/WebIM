@@ -1,7 +1,7 @@
 <script>
 // <template>
-//     <lemon-message-basic
-//         class="lemon-message-text"
+//     <witalk-message-basic
+//         class="witalk-message-text"
 //         :props="$attrs"
 //         scopedSlots={{
 //             content: (props) => {
@@ -15,17 +15,17 @@
 //         <template #content>
 //             <span domProps={{ innerHTML: props.content }} />
 //         </template>
-//     </lemon-message-basic>
+//     </witalk-message-basic>
 // </template>
 
 export default {
-    name: 'lemonMessageText',
+    name: 'WitalkMessageText',
     inject: ['IMUI'],
     inheritAttrs: false,
     render() {
         return (
-            <lemon-message-basic
-                class="lemon-message-text"
+            <witalk-message-basic
+                class="witalk-message-text"
                 props={{ ...this.$attrs }}
                 scopedSlots={{
                     content: (props) => {
@@ -41,7 +41,7 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-message-text .lemon-message-content img {
+.witalk-message-text .witalk-message-content img {
     width: 18px;
     height: 18px;
     display: inline-block;

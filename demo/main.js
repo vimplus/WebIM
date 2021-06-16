@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import App from './App';
-import LemonIMUI from '../src';
+import WitalkIMUI from '../src';
 
-Vue.use(LemonIMUI);
+Vue.use(WitalkIMUI);
 
 Vue.config.productionTip = false;
 
@@ -13,14 +13,14 @@ new Vue({
 // Vue3
 // import { createApp } from 'vue';
 // import App from './App';
-// import LemonMessageVoice from './lemon-message-voice';
+// import WitalkMessageVoice from './witalk-message-voice';
 // import QQIMUI from './qq';
-// import LemonIMUI from '../src';
+// import WitalkIMUI from '../src';
 
 // const app = createApp(App);
 
-// app.component(LemonMessageVoice.name, LemonMessageVoice);
+// app.component(WitalkMessageVoice.name, WitalkMessageVoice);
 // app.component(QQIMUI.name, QQIMUI);
 
-// app.use(LemonIMUI);
+// app.use(WitalkIMUI);
 // app.mount('#app');

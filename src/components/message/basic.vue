@@ -2,7 +2,7 @@
 import { useScopedSlot } from '@/utils';
 
 export default {
-    name: 'lemonMessageBasic',
+    name: 'WitalkMessageBasic',
     inject: {
         IMUI: {
             from: 'IMUI',
@@ -43,16 +43,16 @@ export default {
         return (
             <div
                 class={[
-                    'lemon-message',
-                    `lemon-message-status-${status}`,
+                    'witalk-message',
+                    `witalk-message-status-${status}`,
                     {
-                        'lemon-message-reverse': this.reverse,
-                        'lemon-message-hide-title': hideTitle
+                        'witalk-message-reverse': this.reverse,
+                        'witalk-message-hide-title': hideTitle
                     }
                 ]}
             >
-                <div class="lemon-message-avatar">
-                    <lemon-avatar
+                <div class="witalk-message-avatar">
+                    <witalk-avatar
                         size={36}
                         shape="square"
                         src={fromUser.avatar}
@@ -61,8 +61,8 @@ export default {
                         }}
                     />
                 </div>
-                <div class="lemon-message-inner">
-                    <div class="lemon-message-title">
+                <div class="witalk-message-inner">
+                    <div class="witalk-message-title">
                         {this.hideName === false && (
                             <span
                                 onClick={(e) => {
@@ -74,7 +74,7 @@ export default {
                         )}
                         {this.hideTime === false && (
                             <span
-                                class="lemon-message-time"
+                                class="witalk-message-time"
                                 onClick={(e) => {
                                     this._emitClick(e, 'sendTime');
                                 }}
@@ -83,10 +83,10 @@ export default {
                             </span>
                         )}
                     </div>
-                    <div class="lemon-message-content-flex">
+                    <div class="witalk-message-content-flex">
                         <div
-                            v-lemon-contextmenu_message={this.IMUI.contextmenu}
-                            class="lemon-message-content"
+                            v-witalk-contextmenu_message={this.IMUI.contextmenu}
+                            class="witalk-message-content"
                             onClick={(e) => {
                                 this._emitClick(e, 'content');
                             }}
@@ -97,7 +97,7 @@ export default {
                                 this.message
                             )}
                         </div>
-                        <div class="lemon-message-content-after">
+                        <div class="witalk-message-content-after">
                             {useScopedSlot(
                                 this.IMUI.$scopedSlots['message-after'],
                                 null,
@@ -105,14 +105,14 @@ export default {
                             )}
                         </div>
                         <div
-                            class="lemon-message-status"
+                            class="witalk-message-status"
                             onClick={(e) => {
                                 this._emitClick(e, 'status');
                             }}
                         >
-                            <i class="lemon-icon-loading lemonani-spin" />
+                            <i class="witalk-icon-loading witalk-anim-spin" />
                             <i
-                                class="lemon-icon-prompt"
+                                class="witalk-icon-prompt"
                                 title="重发消息"
                                 style={{
                                     color: '#ff2525',
@@ -128,30 +128,30 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-message {
+.witalk-message {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     padding: 10px 0;
 }
-.lemon-message-time {
+.witalk-message-time {
     color: #b9b9b9;
     padding: 0 5px;
 }
-.lemon-message-inner {
+.witalk-message-inner {
     position: relative;
 }
-.lemon-message-avatar {
+.witalk-message-avatar {
     padding-right: 10px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
-.lemon-message-avatar .lemon-avatar {
+.witalk-message-avatar .witalk-avatar {
     cursor: pointer;
 }
-.lemon-message-title {
+.witalk-message-title {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -165,12 +165,12 @@ export default {
     user-select: none;
     color: #666;
 }
-.lemon-message-content-flex {
+.witalk-message-content-flex {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
 }
-.lemon-message-content {
+.witalk-message-content {
     font-size: 14px;
     line-height: 20px;
     padding: 8px 10px;
@@ -179,12 +179,12 @@ export default {
     position: relative;
     margin: 0;
 }
-.lemon-message-content img,
-.lemon-message-content video {
+.witalk-message-content img,
+.witalk-message-content video {
     background: #e9e9e9;
     height: 100px;
 }
-.lemon-message-content:before {
+.witalk-message-content:before {
     content: " ";
     position: absolute;
     top: 6px;
@@ -195,7 +195,7 @@ export default {
     border-left: none;
     border-right-color: #fff;
 }
-.lemon-message-content-after {
+.witalk-message-content-after {
     display: block;
     width: 48px;
     height: 36px;
@@ -208,57 +208,57 @@ export default {
     overflow: hidden;
     visibility: hidden;
 }
-.lemon-message-status {
+.witalk-message-status {
     position: absolute;
     top: 23px;
     right: 20px;
     color: #aaa;
     font-size: 20px;
 }
-.lemon-message-status .lemon-icon-loading,
-.lemon-message-status .lemon-icon-prompt {
+.witalk-message-status .witalk-icon-loading,
+.witalk-message-status .witalk-icon-prompt {
     display: none;
 }
-.lemon-message-status-going .lemon-icon-loading {
+.witalk-message-status-going .witalk-icon-loading {
     display: inline-block;
 }
-.lemon-message-status-failed .lemon-icon-prompt {
+.witalk-message-status-failed .witalk-icon-prompt {
     display: inline-block;
 }
-.lemon-message-status-succeed .lemon-message-content-after {
+.witalk-message-status-succeed .witalk-message-content-after {
     visibility: visible;
 }
-.lemon-message-reverse {
+.witalk-message-reverse {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
 }
-.lemon-message-reverse .lemon-message-content-flex {
+.witalk-message-reverse .witalk-message-content-flex {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
 }
-.lemon-message-reverse .lemon-message-content-after {
+.witalk-message-reverse .witalk-message-content-after {
     padding-right: 6px;
     padding-left: 0;
     text-align: right;
 }
-.lemon-message-reverse .lemon-message-title {
+.witalk-message-reverse .witalk-message-title {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
 }
-.lemon-message-reverse .lemon-message-status {
+.witalk-message-reverse .witalk-message-status {
     left: 26px;
     right: auto;
 }
-.lemon-message-reverse .lemon-message-content {
+.witalk-message-reverse .witalk-message-content {
     background: #35d863;
 }
-.lemon-message-reverse .lemon-message-content:before {
+.witalk-message-reverse .witalk-message-content:before {
     content: " ";
     position: absolute;
     top: 6px;
@@ -270,24 +270,24 @@ export default {
     border-right: none;
     border-left-color: #35d863;
 }
-.lemon-message-reverse .lemon-message-title {
+.witalk-message-reverse .witalk-message-title {
     text-align: right;
 }
-.lemon-message-reverse .lemon-message-avatar {
+.witalk-message-reverse .witalk-message-avatar {
     padding-right: 0;
     padding-left: 10px;
 }
-.lemon-message-hide-title .lemon-message-avatar {
+.witalk-message-hide-title .witalk-message-avatar {
     padding-top: 10px;
 }
-.lemon-message-hide-title .lemon-message-status {
+.witalk-message-hide-title .witalk-message-status {
     top: 14px;
 }
-.lemon-message-hide-title .lemon-message-content {
+.witalk-message-hide-title .witalk-message-content {
     position: relative;
     top: -10px;
 }
-.lemon-message-hide-title .lemon-message-content:before {
+.witalk-message-hide-title .witalk-message-content:before {
     top: 14px;
 }
 </style>

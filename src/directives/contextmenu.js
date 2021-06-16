@@ -1,7 +1,7 @@
 // import Vue from "vue";
 import { isFunction, isEmpty } from '@/utils/validate';
 // eslint-disable-next-line import/no-cycle
-import LemonPopover from '../components/popover';
+import WitalkPopover from '../components/popover';
 
 let popover;
 
@@ -23,14 +23,16 @@ export default {
                 if (isEmpty(binding.value) || !Array.isArray(binding.value)) return;
                 if (binding.modifiers.click) e.stopPropagation();
                 e.preventDefault();
-                LemonPopover.methods.closeAll();
+                WitalkPopover.methods.closeAll();
+
                 let component;
                 const visibleItems = [];
                 if (binding.modifiers.message) component = vnode.context;
                 else if (binding.modifiers.contact) component = vnode.child;
+
                 if (!popover) {
                     popover = document.createElement('div');
-                    popover.className = 'lemon-contextmenu';
+                    popover.className = 'witalk-contextmenu';
                     document.body.appendChild(popover);
                 }
                 popover.innerHTML = binding.value
@@ -45,11 +47,11 @@ export default {
                         if (visible) {
                             visibleItems.push(item);
                             const icon = item.icon
-                                ? `<i class="lemon-contextmenu-icon ${item.icon}"></i>`
+                                ? `<i class="witalk-contextmenu-icon ${item.icon}"></i>`
                                 : '';
                             return `<div style="color:${item.color}" title="${
                                 item.text
-                            }" class="lemon-contextmenu-item">${icon}<span>${
+                            }" class="witalk-contextmenu-item">${icon}<span>${
                                 item.text
                             }</span></div>`;
                         }

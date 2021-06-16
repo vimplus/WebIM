@@ -28,7 +28,7 @@ const triggerEvents = {
     }
 };
 export default {
-    name: 'LemonPopover',
+    name: 'WitalkPopover',
     props: {
         trigger: {
             type: String,
@@ -91,16 +91,16 @@ export default {
     render() {
         return (
             <span style="position:relative">
-                <transition name="lemon-slide-top">
+                <transition name="witalk-slide-top">
                     {this.visible && (
                         <div
-                            class="lemon-popover"
+                            class="witalk-popover"
                             ref="popover"
                             style={this.popoverStyle}
                             onClick={e => e.stopPropagation()}
                         >
-                            <div class="lemon-popover-content">{this.$slots.content}</div>
-                            <div class="lemon-popover-arrow" />
+                            <div class="witalk-popover-content">{this.$slots.content}</div>
+                            <div class="witalk-popover-arrow" />
                         </div>
                     )}
                 </transition>
@@ -111,7 +111,7 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-popover {
+.witalk-popover {
   border: 1px solid #eee;
   border-radius: 4px;
   font-size: 14px;
@@ -127,14 +127,14 @@ export default {
   -webkit-transform-origin: 50% 150%;
   transform-origin: 50% 150%;
 }
-.lemon-popover-content {
+.witalk-popover-content {
   padding: 15px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   position: relative;
   z-index: 1;
 }
-.lemon-popover-arrow {
+.witalk-popover-arrow {
   left: 50%;
   -webkit-transform: translateX(-50%) rotate(45deg);
   transform: translateX(-50%) rotate(45deg);
@@ -147,13 +147,13 @@ export default {
   height: 8px;
   background: #fff;
 }
-.lemon-slide-top-leave-active,
-.lemon-slide-top-enter-active {
+.witalk-slide-top-leave-active,
+.witalk-slide-top-enter-active {
   -webkit-transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-.lemon-slide-top-enter,
-.lemon-slide-top-leave-to {
+.witalk-slide-top-enter,
+.witalk-slide-top-leave-to {
   -webkit-transform: translateY(-10px) scale(0.8);
   transform: translateY(-10px) scale(0.8);
   opacity: 0;

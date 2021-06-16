@@ -1,7 +1,7 @@
 <template>
     <span
         :style="style"
-        :class="['lemon-avatar', { 'lemon-avatar--circle': circle }]"
+        :class="['witalk-avatar', { 'witalk-avatar-circle': circle }]"
         @click="onClickAvatar"
     >
         <i v-if="imageFinishLoad || !src" :class="icon" />
@@ -10,13 +10,13 @@
 </template>
 <script>
 export default {
-    name: 'LemonAvatar',
+    name: 'WitalkAvatar',
     inject: ['IMUI'],
     props: {
         src: String,
         icon: {
             type: String,
-            default: 'lemon-icon-people'
+            default: 'witalk-icon-people'
         },
         circle: {
             type: Boolean,
@@ -57,7 +57,7 @@ export default {
     //     return (
     //         <span
     //           style={this.style}
-    //           class={['lemon-avatar', { 'lemon-avatar--circle': this.circle }]}
+    //           class={['witalk-avatar', { 'witalk-avatar-circle': this.circle }]}
     //           on-click={e => this.$emit('click', e)}
     //         >
     //           {(this.imageFinishLoad || !this.src) && <i class={this.icon} />}
@@ -68,7 +68,7 @@ export default {
 };
 </script>
 <style lang="less">
-.lemon-avatar {
+.witalk-avatar {
   font-variant: tabular-nums;
   line-height: 1.5;
   -webkit-box-sizing: border-box;
@@ -86,10 +86,10 @@ export default {
   vertical-align: middle;
   border-radius: 4px;
 }
-.lemon-avatar--circle {
+.witalk-avatar-circle {
   border-radius: 50%;
 }
-.lemon-avatar img {
+.witalk-avatar img {
   width: 100%;
   height: 100%;
   display: block;

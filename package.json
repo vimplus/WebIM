@@ -1,9 +1,9 @@
 {
-  "name": "lemon-imui",
-  "version": "1.7.3",
+  "name": "witalk-imui",
+  "version": "1.0.0",
   "main": "dist/index.umd.min.js",
   "description": "基于 VUE2.0 的 IM 聊天组件",
-  "homepage": "http://june000.gitee.io/lemon-im/",
+  "homepage": "http://june000.gitee.io/witalk-im/",
   "keywords": [
     "vue",
     "im",
@@ -15,12 +15,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fanjyy/lemon-imui.git"
+    "url": "git+https://github.com/fanjyy/witalk-imui.git"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name index packages/index.js",
-    "build-examples": "vue-cli-service build --dest examples/dist examples/main.js",
+    "build": "vue-cli-service build --target lib --name index src/index.js",
+    "build-demo": "vue-cli-service build --dest demo/dist demo/main.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
