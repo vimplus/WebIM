@@ -1,0 +1,37 @@
+<template>
+    <div
+        ref="wrapper"
+        :style="{ width: toPx(width), height: toPx(height) }"
+        :class="[
+            'witalk-wrapper',
+            `witalk-wrapper-theme-${theme}`,
+            { 'witalk-wrapper-simple': simple },
+            drawerVisible && 'witalk-wrapper-drawer-show'
+        ]"
+    >
+        <div v-show="!hideMenu" class="witalk-menu">
+            <witalk-avatar
+                v-show="!hideMenuAvatar"
+                class="witalk-menu-avatar"
+                :src="user.avatar"
+                @click="(e) => _handerClickAvatar(e)"
+            />
+            <div
+                :class="[
+                    'witalk-menu-item',
+                    { 'witalk-menu-item-active': activeSidebar === name }
+                ]"
+                title="{title}"
+                @click="() => _handerClickMenu(click, name)"
+            >
+                <witalk-badge :count="unread">{render(item)}</witalk-badge>
+            </div>
+            {menuItem.top}
+            {this.$slots.menu}
+            <div class="witalk-menu-bottom">
+                {this.$slots['menu-bottom']}
+                {menuItem.bottom}
+            </div>
+        </div>
+    </div>
+</template>
